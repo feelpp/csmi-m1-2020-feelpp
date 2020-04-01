@@ -1,6 +1,8 @@
 = MyProject
 
 == Introduction
+This project deals with the solution of PDE for ...
 
 == Context
+
 
