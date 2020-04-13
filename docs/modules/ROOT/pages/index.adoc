@@ -8,8 +8,8 @@
 
 [[introduction]]
 === Introduction
-
-This part is the validation phase for <<Computational_Fluid_Dynamics,Computational Fluid Dynamics>> (<<Computational_Fluid_Dynamics,CFD>>) and <<Computational_Solid_Mechanics,Computational Solid Mechanics>> (<<Computational_Solid_Mechanics,CSM>>), it is where we check if we have solved the right problem by comparing our results to a database.
+Regarding problems of <<Computational_Fluid_Dynamics,Computational Fluid Dynamics>> (<<Computational_Fluid_Dynamics,CFD>>) and <<Computational_Solid_Mechanics,Computational Solid Mechanics>> (<<Computational_Solid_Mechanics,CSM>>), there is a solving method to follow, including phases such as the verification phase, or the validation phase. +
+This part deals with the validation phase, the aim is to check if the solved problem is the right one and not another, this can be done by comparing the results to a database.
 
 [[Computational_Fluid_Dynamics]]
 === Computational Fluid Dynamics (CFD)
@@ -29,10 +29,10 @@ This part is the validation phase for <<Computational_Fluid_Dynamics,Computation
 === Context
 ==== Computational Fluid Dynamics
 
-for *CFD* we constat that it supports both the incompressible Navier-Stokes and the Stokes equations. 
-to do well the projet it will based on  properties namely *the density* and *viscosity* 
-in finnaly we will not own the *Boundary Conditions*
+For *CFD* we constat that it supports both the incompressible Navier-Stokes and the Stokes equations. 
+To do well the projet, it will based on properties namely the *density* and *viscosity*, 
+and finally, we will not own the *Boundary Conditions*.
 
-==== Computational_Solid_Mechanics
-it work properly with equations like  *Linear elasticity*
-and *Hyper-elasticity* . we also can use Axisymmetric reduced model
+==== Computational Solid Mechanics
+It works properly with equations like  *Linear elasticity*
+and *Hyper-elasticity*. We can also use Axisymmetric reduced model.
