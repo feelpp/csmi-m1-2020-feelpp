@@ -24,3 +24,16 @@ This part is the validation phase for <<Computational_Fluid_Dynamics,Computation
 ==== Model
 
 ==== Examples
+
+
+=== Context
+==== Computational Fluid Dynamics
+
+for *CFD* we constat that it supports both the incompressible Navier-Stokes and the Stokes equations. 
+to do well the projet it will based on  properties namely *the density* and *viscosity* 
+in finnaly we will not own the *Boundary Conditions*
+
+==== Computational_Solid_Mechanics
+it work properly with equations like  *Linear elasticity*
+and *Hyper-elasticity* . we also can use Axisymmetric reduced model
+
