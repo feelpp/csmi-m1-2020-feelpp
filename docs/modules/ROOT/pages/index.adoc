@@ -32,7 +32,7 @@ The terms fluid and liquid are often used interchangeably, but technically, the 
 The distinction between liquids and gases can affect the way in which the fluid is modeled, but both have the same basic fluid formulae and comparable properties.
 
 ==== Compactness of a fluid:
-image::p1.png[width=60%]
+image::images/p1.png[width=60%]
 
 ==== Macroscopic properties of a fluid:
 1. Dynamic viscosity: +
@@ -45,7 +45,7 @@ Two coefficients are used:
 
 3. Thermal diffusion:
 
-image::p2.png[Width=100%]
+image::images/p2.png[Width=100%]
 
 The quantity q=Q/A is called heat flux density. It is a thermal power (Watts) exchanged per unit of surface area and is set: q=Q/A=-λ*(T1-T0)/H. +
 The positive number λ is called the coefficient of thermal conductivity. It is expressed in W.m/K.
