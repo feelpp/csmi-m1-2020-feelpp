@@ -1,0 +1,25 @@
+== Road map
+
+=== Faye Mouhamadou
+Toolbox feel++: 2h +
+Documentation CFD+CSM: 2h +
+Redaction + translation: 2h +
+Group communication: 5h
+
+=== Fezani Nesrine
+Toolbox feel++: 4h +
+Documentation CFD: 4h +
+Redaction + translation: 5h +
+Group communication: 5h
+
+=== Masson Bryan
+Toolbox feel++: 2h +
+Documentation AsciiDoc + creation of the plan: 3h +
+Redaction + translation: 4h +
+Group communication: 5h
+
+=== Schuffenecker Antoine
+Toolbox feel++: 2h +
+Documentation CSM: 2h +
+Antora toolbox + tries: 3h +
+Group communication: 5h
