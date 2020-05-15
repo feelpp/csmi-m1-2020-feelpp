@@ -3,13 +3,13 @@
     "ShortName":"ecoulementinstationnaire",
     "Models":
     {
-        "equations":"Navier-Stokes"
+         "equations": "Navier-Stokes"
     },
     "Parameters":
     {
         "h":"0.052",
         "s":"0.049",
-        "re":"1095",
+        "re":"800",
         "musurrho":"1.4553e-5"
     },
     "Materials":
@@ -17,9 +17,9 @@
         "ommega":
         {
             "rho":"1.23",
-            "mu":"1.79e-5"
+            "mu":"0.0000179"
         }
-    },
+    }, 
     "BoundaryConditions":
     {
         "velocity":
@@ -60,10 +60,11 @@
         }
     },
     "PostProcess":
-    {
+    {   
         "Exports":
         {
             "fields":["velocity","pressure","pid"]
-        }    
+        }
+
     }
 }
