@@ -7,24 +7,24 @@ To solve a fluid mechanics problem, we use physical laws to find the mathematica
 Consider the fundamental principle of physics proposed by Antoine Lavoisier, +
 which gives the intergral form of the mass conservation equation :
 
-image::images/mass.png[width=50%]
+image::images/mass.PNG[width=50%]
 and, using the Gauss' divergence theorem, we obtain the differential form, +
 which is the continuity equation :
 
-image::images/continuity.png[width=25%]
+image::images/continuity.PNG[width=25%]
 where ρ (kg/m³) is the density and V (m/s) is the velocity.
 
 * Momentum equation :
 
 Newton’s second law states that the force of a moving object is equivalent to its rate of change of momentum. In fluid mechanics, the momentum theorem is :
 
-image::images/momentum_theorem.png[width=60%}]
+image::images/momentum_theorem.PNG[width=60%}]
 and it was converted by the french mathematician Cauchy, with the application of divergence theorem, to differential form. The result is the momentum equation :
 
-image::images/momentum.png[width=50%]
+image::images/momentum.PNG[width=50%]
 where P (Pa) is the pressure, μ (Pa.s) is the dynamic viscosity and g is the external forces acting on the fluid, such as gravity.
 
 * Energy equation
 
-image::images/energy.png[width=60%]
+image::images/energy.PNG[width=60%]
 where h (J) is the enthalpy, μₜ (Pa.s) is the turbulence viscosity, σₜ is a constant and Sₕ is the volumetric heat source.
