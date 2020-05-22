@@ -1,0 +1,26 @@
+\documentclass[2pt]{article}
+\usepackage{amsfonts}
+\begin{document}
+\title{Incompressible Navier-Stokes equations}
+\maketitle
+
+To solve a fluid mechanics problem, we use physical laws to find the mathematical equations which describe the physical properties of the fluid, such as velocity, temperature, pressure, density and viscosity. It is assumed that the fluid is incompressible, it means that the volume of the fluid cannot be reduced by an increase of pressure. Theses equations are called the governing equations of CFD, or the incompressible Navier-Stokes equations :
+\\\begin{itemize}\item Continuity equation\end{itemize}
+Consider the fundamental principle of physics proposed by Antoine Lavoisier,
+which gives the intergral form of the mass conservation equation :
+$$\frac{\partial}{\partial t}\int_\Omega\rho d\omega+\int_{\partial\Omega}\rho v\cdot\vec nd\sigma=0\qquad\forall v\in\mathbb R$$
+where $\rho$ (kg/m³) is the density in the domain $\Omega$, $v$ (m/s) is the velocity of the fluid and $\vec n$ is the unit normal vector to the boundary $\partial\Omega$.\\
+Consider also Gauss' divergence theorem :
+$$\int_\Omega\nabla\cdot vd\omega=\int_{\partial\Omega}v\cdot\vec n d\sigma\qquad\forall v\in\mathbb R$$
+Using Gauss' divergence theorem in the mass conservation equation, we obtain the differential form, which is the continuity equation :
+$$\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho v)=0$$
+\\\begin{itemize}\item Momentum equation\end{itemize}
+Newton’s second law states that the force of a moving object is equivalent to its rate of change of momentum. In fluid mechanics, the momentum theorem is :
+$$\sum\vec F_{ext}=\int_\Omega\frac{\partial(\rho v)}{\partial t}d\omega+\int_{\partial\Omega}(\rho\vec v)\cdot(\vec v\cdot\vec n)d\sigma$$
+and it was converted to differential form by the french mathematician Cauchy, with the application of the divergence theorem.\\The result is the momentum equation :
+$$\rho\big(\frac{\partial v}{\partial t}+v\cdot\nabla v\big)=-\nabla p+\mu\Delta v+\rho g$$
+where p (Pa) is the pressure, $\mu$ is the dynamic viscosity and $g$ is the external forces acting on the fluid, such as gravity.
+\\\begin{itemize}\item Energy equation\end{itemize}
+$$\frac{\partial(\rho h-p)}{\partial t}+\nabla(\rho vh)=\nabla\big((\mu+\frac{\mu_t}{\sigma_t})\nabla h\big)-S_h$$
+where $h=U+pV$ (J) is the enthalpy, $U$ is the internal energy of the system, $V$ is the volume, $\mu_t$ is the turbulence viscosity, $\sigma_t$ is a constant and $S_h$ is the volumetric heat source.
+\end{document}
