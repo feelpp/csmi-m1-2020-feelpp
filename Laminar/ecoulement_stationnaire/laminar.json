@@ -10,7 +10,8 @@
         "h":"0.0052",
         "s":"0.0049",
         "re":"100",
-        "musurrho":"0.000014553"
+        "musurrho":"0.000014553",
+        "uave":"0.56611" // Re=389
     },
     "Materials":
     {
@@ -28,7 +29,7 @@
             {
                 "inlet":
                 {
-                    "expr":"{6*((re/h)*musurrho)*((y-s)/h)*(1-((y-s)/h)),0}:re:musurrho:s:h:y"
+                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
                 },
                 "wall1":
                 {
