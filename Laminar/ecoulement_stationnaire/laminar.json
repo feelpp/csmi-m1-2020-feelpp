@@ -3,18 +3,18 @@
     "ShortName":"ecoulementstationnaire",
     "Models":
     {
-        "equations":"Stokes"
+        "equations":"Navier-Stokes"
     },
     "Parameters":
     {
-        "h":"0.052",
-        "s":"0.049",
+        "h":"0.0052",
+        "s":"0.0049",
         "re":"100",
         "musurrho":"0.000014553"
     },
     "Materials":
     {
-        "ommega":
+        "omega":
         {
             "rho":"1.23",
             "mu":"0.0000179"

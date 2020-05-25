@@ -60,4 +60,4 @@ Physical Line("wall5") = {7};
 //+
 Physical Line("wall5") = {8};
 //+
-Physical Surface("ommega") = {1};
+Physical Surface("omega") = {1};
