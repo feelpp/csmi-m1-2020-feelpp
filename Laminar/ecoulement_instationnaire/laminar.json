@@ -1,25 +1,27 @@
 {
     "Name": "Laminar, Isothermal Backward Facing Step Benchmark",
-    "ShortName":"ecoulementinstationnaire",
+    "ShortName":"ecoulementstationnaire",
     "Models":
     {
-         "equations": "Navier-Stokes"
+        "equations":"Navier-Stokes"
     },
     "Parameters":
     {
         "h":"0.0052",
         "s":"0.0049",
-        "re":"800",
-        "musurrho":"1.4553e-5"
+        "re":"100",
+        "musurrho":"0.000014553",
+        //"uave":"0.54433" // Re=389
+        "uave":"1.5322" // Re=1095
     },
     "Materials":
     {
         "omega":
         {
             "rho":"1.23",
-            "mu":"0.0000179"
+            "mu":"1.79e-5"
         }
-    }, 
+    },
     "BoundaryConditions":
     {
         "velocity":
@@ -28,7 +30,7 @@
             {
                 "inlet":
                 {
-                    "expr":"{6*((re/s)*musurrho)*((y-s)/h)*(1-((y-s)/h)),0}:re:musurrho:s:h:y"
+                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
                 },
                 "wall1":
                 {
@@ -47,6 +49,7 @@
                     "expr":"{0,0}"
                 }
             }
+
         },
         "fluid":
         {
@@ -60,11 +63,10 @@
         }
     },
     "PostProcess":
-    {   
+    {
         "Exports":
         {
             "fields":["velocity","pressure","pid"]
         }
-
     }
 }
