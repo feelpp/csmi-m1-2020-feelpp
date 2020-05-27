@@ -1,0 +1,28 @@
+= bundary conditions 
+
+== continuity equation  
+
+The time derivative can be understood as the accumulation (or loss) of mass in the system, while the divergence term represents the difference in flow in versus flow out
+
+If the fluid is incompressible the mass continuity equation simplifies the volume continuity equation
+and we have 
+
+∇.u = 0
+
+u is the flow velocity vector 
+
+== momentum equation  
+
+there are incoming or outgoing conditions specific to the Navier-Stokes system.
+
+Indeed, as shown by the Chapman-Enskog method in the case of gases, the Navier-Stokes system supposes at the microscopic level a slight disturbance in the Maxwell-Boltzmann distribution, but this hypothesis is invalid in the vicinity of a wall.
+
+V = 0 of a wall
+T'= Tp at the wall, where Tp is the given wall temperature.
+
+== energy  equation  
+
+Here we have a initial condition 
+ T(x,0) = f(x) ∀ x ∈ [0,L]
+and boundary conditions, here of homogeneous Dirichlet type:
+T(0,t) = 0 = T(L,t) ∀ t>0 

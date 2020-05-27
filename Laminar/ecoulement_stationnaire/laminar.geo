@@ -1,4 +1,4 @@
-// Gmsh project created on Mon Apr 27 18:52:15 2020// Gmsh project created on Mon Apr 27 18:52:15 2020
+// Gmsh project created on Mon Apr 27 18:52:15 2020
 //+
 h=5e-4;
 S=0.0049;

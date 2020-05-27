@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\title{Partie 1}
+\author{antoine }
+\date{May 2020}
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Presentation of feel-pp:}
+
+Feel++ is environment which allows users to modelize and resolve different physics problems in the case of scientific studies or in more factual situations of engineering. This tool can solve complex cases by starting with monophysic and all the way to Multiphysics problems.
+
+\bigskip
+The use of these tools does not require any profound knowledge nor a complete one of the equations and the theory behind all the calculus. But a solid knowledge of the situation and physics parameters which allow users to adapt the simulation to their particular case. With all this, and given the right simulation is chosen, the simulation done will be realistic and will illustrate as best as one can, the situation. 
+
+\bigskip
+To add to diversity of the equations available, the users can use different method to obtain the results. By default, the method uses the finite element method with a lot of numerical solvers but, if required, some more advanced methods are implemented and can be use as well.
+
+\bigskip
+
+\clearpage
+
+\maketitle 
+
+\section{Presentation of the project: contribute to the feel-pp documentation }
+
+
+The project which was given to our group is to complete the documentation on several cases on the feel-pp website. The documentation is mainly about the fluid flows in given geometries and the effort reactions on particular solid. The documentation is enhanced by simulations where users can change some physicals parameters. This provides a large choice of possibilities that can be created by the same equations. 
+The main methodology behind any resolution is:
+
+\bigskip
+1)Definition of a geometry and a mesh which change the problem to a discrete one as well as the domain and the numerical
+method used.
+
+\bigskip
+2)The actual solving of the problem.
+\bigskip
+
+3)The exploitation of the results.
+\bigskip
+
+
+\maketitle 
+
+\subsection{Fluid :}
+
+The fluid part allows to modelize a bunch of situations in 2d or 3d:
+-	Stokes flow
+-	Laminar incompressible flow
+-	Steady and unsteady simulations
+-	Bdf time schemes up to order 4
+-	Moving domain support using Arbitrary Lagrangian Eulerian (ALE) formulation
+-	Support high order geometry including in context of moving domain
+-	Stabilization pressure and advection dominated using Galerking Least Square
+-	Boundary conditions: no-slip, slip(symmetry), inflow (not necessarily aligned with an axis), pressure, outflow
+
+
+\maketitle 
+\subsection{Solid :}
+
+A solid is, in opposition to a fluid (gaz or liquid), a substance which cannot flow and, in a way, has a high resistance to deformation. It can be defined as well as an entity which has an integrity.
+The solid part allows to modelize the effects on effort on solids in 2d or 3d.
+In feel++ the main interest is to study the axisymmetric reduced model.
+Every solid has a different geometry and different physical parameters by changing them anyone can simulate with any material and can see how they will react with given efforts. The most common pair of parameters which characterize the elasticity of a solid are the Poisson coefficient and the Young-Modulus.
+
+\clearpage
+\maketitle 
+\section{Bibliography :}
+
+
+- http://docs.feelpp.org/toolboxes/0.108/
+\bigskip
+
+- https://en.wikipedia.org/wiki/Computational-fluid-dynamics
+\bigskip
+
+- C.H. Bruneau and E. Creuse,Towards a transparent boundary conditions for the compressibleNavier–Stokes Equations, Int. J. Num. Meth. Fluids,36, 807-840 (2001).
+\bigskip
+
+- M. Himdi,Contribution  à  la  simulation  numérique  des  écoulements  de  fluides  compressibles  etpeu compressibles par le code de calcul KIVA-II, PH-D Thesis, Laboratoire de mécanique de Lille,France, (1993)
+\bigskip
+
+- R. Christoph, méthode de raccordement de maillages non-conformes pour des equations de Navier-Stokes, Université de
+Bordeaux I, 2006
+\bigskip
+
+- C. Christopher, Numerical solution of a 2D flow over a backward facing step, May 2018 
+\bigskip
+
+- G.Stèphan, Contribution a la modelisation de la population atmosphérique dans les villes, Bordeaux i , 2000 
+\bigskip
+
+- Haque, A., Ahmad, F., Yamada, S. and Chaudhary,
+S. (2007). Assessment of Turbulence Models for Turbulent
+Flow over Backward Facing Step. Assessment of Turbulence
+Models for Turbulent Flow over Backward Facing Step, 2(4),
+pp.1-6
+\bigskip
+
+- https://en.wikipedia.org/wiki/Navier-Stokes_equations#Incompressible_flow
+/bigskip
+
+- https://andrew.gibiansky.com/blog/physics/fluid-dynamics-the-navier-stokes-equations/
+/bigskip
+
+- https://www.researchgate.net/publication/322032449_Governing_Equations_in_Computational_Fluid_Dynamics_Derivations_and_A_Recent_Review
+/bigskip
+
+- https://en.wikipedia.org/wiki/Divergence_theorem
+/bigskip
+
+- https://en.wikipedia.org/wiki/Momentum
+/bigskip
+
+- https://en.wikipedia.org/wiki/Continuity_equation
+/bigskip
+
+-https://en.wikipedia.org/wiki/Conservation_of_mass
+/bigskip
+
+
+\end{document}
