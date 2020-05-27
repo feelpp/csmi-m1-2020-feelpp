@@ -1,6 +1,6 @@
 // Gmsh project created on Mon Apr 27 18:52:15 2020// Gmsh project created on Mon Apr 27 18:52:15 2020
 //+
-h=0.001;
+h=5e-4;
 S=0.0049;
 H=0.0052;
 L1=0.2;
@@ -22,17 +22,17 @@ Line(4) = {3, 4};
 Line(5) = {4, 8};
 Line(6) = {8, 7};
 
-//Points vertical 1er cas
+//Points vertical 1er cas re=398
 Point(9)  = {0, S+H, 0, h};
-Point(10) = {0.026509, 0, 0, h};
-Point(11) = {0.026509, S+H, 0, h};
-Point(12) = {0.058261, 0, 0, h};
-Point(13) = {0.058261, S+H, 0, h};
-//Points vertical 2eme cas
-Point(14) = {0.034496,  0,    0, h};
-Point(15) = {0.034496, S+H,   0, h};
-Point(16) = {0.093296,   0,   0, h};
-Point(17) = {0.093296, S+H,   0, h};
+Point(10) = {S*5.41, 0, 0, h};
+Point(11) = {S*5.41, S+H, 0, h};
+Point(12) = {S*11.84, 0, 0, h};
+Point(13) = {S*11.84, S+H, 0, h};
+//Points vertical 2eme cas re=1095
+Point(14) = {S*7.04,  0,    0, h};
+Point(15) = {S*7.04, S+H,   0, h};
+Point(16) = {S*19.04,   0,   0, h};
+Point(17) = {S*19.04, S+H,   0, h};
 
 
 //+marker pour Re=389
@@ -106,12 +106,11 @@ Line Loop(7) = {17, 10, 18, -7};
 Plane Surface(6) = {7};
 
 //phy surface
-Physical Surface("S1") = {1, 2, 3, 4, 5, 6, 7};
+Physical Surface("omega") = {1, 2, 3, 4, 5, 6};
 
 //phy line
 Physical Line("inlet") = {10};
 Physical Line("outlet") = {11};
-Physical Line("wall1") = {24,23,22,21,20};
-Physical Line("wall2") = {19};
-Physical Line("wall3") = {18};
-Physical Line("wall4") = {17,16,15,14,13,12};
+Physical Line("wall1") = {20,21,22,23,24};
+Physical Line("wall2") = {19,18};
+Physical Line("wall3") = {17,16,15,14,13,12};
