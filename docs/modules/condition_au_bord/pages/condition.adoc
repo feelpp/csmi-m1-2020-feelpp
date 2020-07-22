@@ -1,0 +1,57 @@
+== Boundary condition
+
+To solve a fluid mechanics problem, we use physical laws to find the mathematical equations which describe the physical properties of the fluid, such as velocity, temperature, pressure, density and viscosity. It is assumed that the fluid is incompressible, it means that the volume of the fluid cannot be reduced by an increase of pressure. Theses equations are called the governing equations of CFD:
+
+- Continuity equation
+
+Consider the  fundamental principle of physics proposed by Antoine  Lavoisier, which gives theintergral form of the mass conservation equation:
+
+[stem]
+++++
+......................................................
+++++
+where stem:[\rho(kg/m)] is the density in the domain stem:[\Ommega],
+stem:[v(m/s)] is the velocity of the fluid and stem:[n] the unitnormal vector to the boundary stem:[\partiel \Ommega].
+
+Consider also Gausse divergence theorem:
+
+[stem]
+++++
+..........................................................
+++++
+
+Using Gauss divergence theorem in the mass conservation equation, we obtain the differential form,which is the continuity equation:
+
+[stem]
+++++
+.............................................................
+++++
+
+- Momentum equation
+
+Newton’s second law states that the force of a moving object is equivalent to its rate of change ofmomentum.  In fluid mechanics, the momentum theorem is :
+
+[stem]
+++++
+..................................................................
+++++
+
+And it was converted to differential form by the french mathematician Cauchy, with the applicationof the divergence theorem.
+
+The result is the momentum equation :
+
+[stem]
+++++
+.....................................................................
+++++
+
+where stem:[p (Pa)] is the pressure,stem:[\mu] is the dynamic viscosity and stem:[g] is the external forces acting on the fluid, such as gravity.
+
+- Energy equation
+
+[stem]
+++++
+.......................................................................
+++++
+    
+where stem:[h = U+pV (J)] is the internal energy of the system, V is the volume, stem:[\mu_{t}] is the thurbulence viscosity, stem:[\gamma_t] is a constant and stem:[S_h] is the volumetric heat source.

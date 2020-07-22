@@ -3,3 +3,7 @@ title: Feel++ MyProject
 version: '0.1.0'
 nav:
 - modules/ROOT/nav.adoc
+- modules/introduction_laminar/nav.adoc
+- modules/introduction_cas_test/nav.adoc
+- modules/equation_mathematique/nav.adoc
+- modules/resultas/nav.adoc
