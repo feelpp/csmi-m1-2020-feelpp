@@ -1,5 +1,6 @@
 = Flow around three ssquares side by side
 
+NOTE: this benchmark is based on <<zheng-2019>>.
 
 [bibliography]
 == Bibliography 

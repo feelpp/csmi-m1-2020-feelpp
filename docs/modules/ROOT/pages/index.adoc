@@ -48,7 +48,14 @@ The objectives are to study various flows
 * <<zheng-2019,Forces and flow around three side-by-side square cylinders>>
 * <<abbasi-2019,Proximity Effects on Characteristics of Flow around Three Inline Square Cylinders>>
 
-We use https://apps.automeris.io/wpd/[Web plot digitizer] to retrieve the data from articles and enable comparing with our own results.
+=== Plotting results
+
+To plot the results, https://plotly.com/javascript/[plot.ly javascript API] is used within Antora.
+
+=== Comparing with the results
+
+The results obtained with {feelpp} are compared with the results in the articles. 
+To do so, we use https://apps.automeris.io/wpd/[Web plot digitizer] to retrieve the data from articles and enable comparing with our own results.
 
 
 == An Introduction to Computational Fluid Mechanics

@@ -1,5 +1,7 @@
 = Flow around Three Squares Inline
 
+NOTE: this benchmark is based on <<abbasi-2019>>.
+
 [bibliography]
 == Bibliography 
 

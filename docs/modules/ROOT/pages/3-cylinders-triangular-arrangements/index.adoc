@@ -1,5 +1,7 @@
 = Flow around three cylinder in equilaterial triangular arrangements
 
+NOTE: this benchmark is based on <<chen-2020>>.
+
 [bibliography]
 == Bibliography 
 
