@@ -1,6 +1,6 @@
-name: myproject
-title: Feel++ MyProject
-version: '0.1.0'
+name: feelpp-cfd
+title: Feel++ CFD
+version: latest
 nav:
 - modules/ROOT/nav.adoc
 - modules/introduction_laminar/nav.adoc
