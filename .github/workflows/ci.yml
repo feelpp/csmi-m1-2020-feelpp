@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  docs:
     runs-on: ubuntu-latest
     steps:
     - uses: buildkite/trigger-pipeline-action@v1.2.0
