@@ -53,6 +53,14 @@ We use https://apps.automeris.io/wpd/[Web plot digitizer] to retrieve the data f
 
 == An Introduction to Computational Fluid Mechanics
 
+We propose an xref:ROOT:cfd/index.adoc[introduction to Computational Fluid Dynamics] in order to define 
+
+* the equations at play
+* the boundary conditions
+* the parameters
+
+in order to establish the benchmarks objectives.
+
 
 
 

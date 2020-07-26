@@ -1,5 +1,5 @@
 * xref:ROOT:index.adoc[Introduction]
-* xref:ROOT:cfd.adoc[cfd.adoc]
+* xref:ROOT:cfd/index.adoc[Introduction to CFD]
 * Benchmarks
 ** xref:ROOT:backward-step/index.adoc[Backward Facing Step]
 ** xref:ROOT:3-cylinders-triangular-arrangements/index.adoc[Three Cylinders in Triangular arrangements]
