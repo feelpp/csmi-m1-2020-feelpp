@@ -1,1 +1,6 @@
 = Flow around Three Squares Inline
+
+[bibliography]
+== Bibliography 
+
+* [[[abbasi-2019]]] _Proximity Effects on Characteristics of Flow around Three Inline Square Cylinders_, Waqas Sarwar Abbasi, Shams Ul Islam, and Hamid Rahman3, Mathematical Problems in Engineering, Volume 2019 |Article ID 1752803 | 14 pages | https://doi.org/10.1155/2019/1752803

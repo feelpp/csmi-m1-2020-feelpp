@@ -1,1 +1,7 @@
 = Flow around three ssquares side by side
+
+
+[bibliography]
+== Bibliography 
+
+* [[[zheng-2019]]] _Forces and flow around three side-by-side square cylinders_, Qinmin Zheng, Md. Mahbub Alam, October 2019 Wind and Structures An International Journal 29(1):1-13 DOI: 10.12989/was.2019.29.1.001 link:{attachmentsdir}/Forcesandflowaroundthreeside-by-sidesquarecylinders.pdf[Download PDF]
