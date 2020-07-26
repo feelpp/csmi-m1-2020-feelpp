@@ -1,4 +1,4 @@
-= CFD Simulations using Feel++
+= CFD Simulations using {feelpp}
 :author: 
 :stem: latexmath
 :imagesprefix:
@@ -41,7 +41,7 @@ NOTE: The internship is a follow-up of a semester project. The report is availab
 
 == Objectives
 
-The objectives are to study various flows
+The objectives are to study various flows with {feelpp}.
 
 * http://docs.feelpp.org/cases/0.108/cfd/laminar_isothermal_backward_facing_step/README/[Laminar Isotherme Backward Facing Steps Benchmark]
 * <<chen-2020,Numerical simulations of flow past three circular cylinders in equilateral-triangular arrangements>>
@@ -51,6 +51,17 @@ The objectives are to study various flows
 === Plotting results
 
 To plot the results, https://plotly.com/javascript/[plot.ly javascript API] is used within Antora.
+Examples are shown http://docs.feelpp.org/cases/0.108/heat/opus/README/[here] and the code is https://github.com/feelpp/toolbox/blob/master/examples/modules/heat/pages/opus/README.adoc#test-1-a[here] and edit the page to see the actual javascript.
+
+[NOTE]
+====
+To enable `plot.ly` support on a page, edit the `.adoc` file and add at the top
+----
+:page-plotly: true
+----
+====
+
+
 
 === Comparing with the results
 
