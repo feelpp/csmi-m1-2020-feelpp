@@ -50,6 +50,12 @@ The objectives are to study various flows
 
 We use https://apps.automeris.io/wpd/[Web plot digitizer] to retrieve the data from articles and enable comparing with our own results.
 
+
+== An Introduction to Computational Fluid Mechanics
+
+
+
+
 [bibliography]
 == Bibliography 
 
