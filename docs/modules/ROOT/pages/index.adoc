@@ -1,4 +1,45 @@
 = CFD Simulations using Feel++
+:author: 
+:stem: latexmath
+:imagesprefix:
+ifdef::env-github,env-browser,env-vscode[:imagesprefix: ../images/]
+
+
+
+++++
+<center>
+<H1>
+	First year internhip at the Centre de Modélisation et de simulation de Strasbourg
+</H1>
+</center>
+++++
+
+image::{imagesprefix}logo_cemosis.png[]
+
+++++
+<br>
+<center>
+<H1>
+	M1 CSMI
+</H1>
+++++
+
+image::{imagesprefix}logo_ufr.png[]
+
+++++
+<H2>
+	Supervized by <br>
+	Vincent Chabannes, Romain Hild & Christophe Prud'homme
+	<br><br>
+	From June 8<sup>th</sup> 2020 to August 7<sup>th</sup> 2020
+</H2>
+</center>
+++++
+
+
+NOTE: The internship is a follow-up of a semester project. The report is available link:{attachmentsdir}/report-project-csmi-m1-feelpp-cfd.pdf[here]. 
+
+== Objectives
 
 The objectives are to study various flows
 
@@ -6,6 +47,8 @@ The objectives are to study various flows
 * <<chen-2020,Numerical simulations of flow past three circular cylinders in equilateral-triangular arrangements>>
 * <<zheng-2019,Forces and flow around three side-by-side square cylinders>>
 * <<abbasi-2019,Proximity Effects on Characteristics of Flow around Three Inline Square Cylinders>>
+
+We use https://apps.automeris.io/wpd/[Web plot digitizer] to retrieve the data from articles and enable comparing with our own results.
 
 [bibliography]
 == Bibliography 
