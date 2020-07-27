@@ -1,0 +1,54 @@
+{
+    "Name": "three circular cylinders in equilateral-triangular arrangements",
+    "ShortName":"flow past",
+    "Models":
+    {
+         "equations": "Navier-Stokes"
+    },
+    "Materials":
+    {
+        "omega":
+        {
+            "rho":"1",
+            "mu":"1e-6"
+        }
+    }, 
+    "BoundaryConditions":
+    {
+        "velocity":
+        {
+            "Dirichlet":
+            {
+                "Inlet":
+                {
+                    "expr":"{0.02,0}"
+                },
+                "Wall1":
+                {
+                    "expr":"{0,0}"
+                },
+                "Wall2":
+                {
+                    "expr":"{0,0}"
+                }
+            }
+        },    
+        "fluid":
+        {
+          "outlet":
+          {
+            "Outlet":
+            {
+                "expr":"0" 
+            }
+          }
+        }
+    },
+    "PostProcess":
+    {   
+        "Exports":
+        {
+            "fields":["velocity"]
+        }
+    }
+}
