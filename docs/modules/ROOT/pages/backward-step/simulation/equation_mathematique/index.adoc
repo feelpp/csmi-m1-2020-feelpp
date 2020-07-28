@@ -10,38 +10,43 @@
 
 The Navier-Stokes equations are a system of nonlinear partial differential equations which describethe movement of fluids in a continuous medium, it is demonstrated from a balance of momentumper unit volume for an incompressible fluid it is given in the form:
 
-
+[sidebar]
+.Equation of Navier-Stokes 
+--
 [stem]
 ++++
 \begin{cases}
 \displaystyle
-\rho \frac{\partial u}{\partial t}+\rho (u.\nabla)u=- \nabla p +\rho f+\mu \Delta u\\
-\nabla u = 0\\
-\frac{\partial \rho}{\partial t}+ u.\partial \rho = 0
+\rho \frac{\partial u}{\partial t}+\rho (u.\nabla)u=- \nabla p +\rho f+\mu \Delta u ~~~~~~~~(1) \\
+\nabla u = 0  ~~~~~~~~(2)\\
+\frac{\partial \rho}{\partial t}+ u.\nabla\rho = 0  ~~~~~~~~(3)
 \end{cases}
 ++++
 
-In this system:
+where:
 
-* `\rho`: density.
-* `\mu`: fluid viscosity.
-* `u` : fluid velocity.
-* `p` : fluid pressure.
-* `f` : external forces exerted on the fluid.
-
-The first equation describes the conservation of the movement, the second equation is the incompressibility constraint and the last equation is the conservation of the mass.
+* stem:[\rho]: density.
+* stem:[\mu] : fluid viscosity.
+* u : fluid velocity.
+* p : fluid pressure.
+* f : external forces exerted on the fluid.
+--
+The first equation (1) describes the conservation of the movement, the second equation (2) represent the incompressibility constraint and the last equation (3)  is the conservation of the mass.
 
 ==  Reynolds number
 The Reynolds number is a dimensionless quantity that gives the ratio between the inertial forces and the viscous forces that intervene in the flow. Its expression is as follows:
 
+[sidebar]
+.Rynolds number
+--
 [stem]
 ++++
 Re= \frac {\rho UL}{\mu}
 ++++
 
-With L and U be the scales respective size and flow velocity.
-
-We recognizethe two characteristic times necessary to transport the movement over a length L by diffusion and by convection. Transportation will be the shortest time thus dominating the Reynolds number is the relationship between convective and diffusive effects:
+With L and U the scales respective size and flow velocity.
+--
+We recognize the two characteristic times necessary to transport the movement over a length L by diffusion and by convection. Transportation will be the shortest time thus dominating the Reynolds number is the relationship between convective and diffusive effects:
 
 [stem]
 ++++
@@ -52,22 +57,24 @@ Re= \frac{effects_{convective}}{effects_{diffusive}}
 Viscous forces clearly dominate inertial forces and the corresponding terms can be neglected in the Navier-Stokes equations. When we divide the first equation per stem:[\rho], we get a balance of forces per unit mass, which can also be interpreted as a velocity transport
 equation. In this case we speak of the quasi-static Stokes problem:
 
+[sidebar]
+.Quasi-static Stokes probleme
+--
 [stem]
 ++++
-\begin{align}
 \begin{cases}
 \displaystyle
-\frac{\partial u}{\partial t} + (u.\nabla)=-\frac{1}{\rho} \nabla (p-p_{0})+ v \Delta u \\
+\frac{\partial u}{\partial t} + (u.\nabla) u=-\frac{1}{\rho} \nabla (p-p_{0})+ v \Delta u \\
 \nabla u = 0\\
 \end{cases}
-\end{align}
 ++++
  
 Such as:
 
-* `stem:[p_{0}]` the value taken by the pressure in the abscence of flow.
-* `stem:[v=\frac{\mu}{\rho}]` the kinematic viscosity of the fluid .
-* `stem:[v \Delta u]`a linear term represents the movement quantity transport.
+* stem:[p_0]: the value taken by the pressure in the abscence of flow.
+* stem:[v=\frac{\mu}{\rho}]: the kinematic viscosity of the fluid .
+* stem:[v \Delta u]: a linear term represents the movement quantity transport.
+--
 
 Density does not appear in the movement conservation equation, which is why the movement conservation equation has not been rewritten,  But it can remain present in the external forces (force of gravity).
 

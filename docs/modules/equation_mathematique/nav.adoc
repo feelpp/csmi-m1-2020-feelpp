@@ -1,2 +1,0 @@
-* Generalities about the Stokes problem
-

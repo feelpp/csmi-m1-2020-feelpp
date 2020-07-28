@@ -89,6 +89,17 @@ NOTE: the reattachment length stem:[\left(x_{r}\right)] is normalized with the s
 
 Appendices stem:[\mathrm{B}, \mathrm{C}] and stem:[\mathrm{D}] summarise the experimental data in a table form to simplify the validation process. The quadratic mean (or RMS) of deviation can be used to quantify the level of agreement between both sets of results.
 
+== Comparison of simulated and theoretical results
+
+In this context, we propose a study in order to define :
+
+* xref:ROOT:pages:backward-step:simulation:inctroduction_laminar/index.adoc[Presentation]
+* xref:ROOT:pages:backward-step:simulation:equation_mathematique/index.adoc[Navier-stokes equation]
+* xref:ROOT:pages:backward-step:simulation:condition_au_bord/index.adoc[Boundary condition]
+* xref:ROOT:pages:backward-step:simulation:cas_test:introduction_cas_test/index.adoc[The test case]
+* xref:ROOT:pages:backward-step:simulation:resultas/index.adoc[Results]
+
+
 == References
 
 1. B.F. Armaly, F. Durst, J.C.F. Pereira and B. Schoenung, Experimental and Theoretical Investigation of Backward-Facing Step Flow, J. Fluid Mech., 1983, Vol. 127, pp. 473-496
