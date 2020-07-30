@@ -1,0 +1,14 @@
+= Root Mean Square Error(RMSE)
+:stem: latexmath
+
+[stem]
+++++
+RMSE=\sqrt{\frac{\sum_{i=0}^n (\widehat{y_i}-y_i)^2}{n}}
+++++
+
+The RMSE is an index that provides an indication of the dispersion or variability in the quality of
+the prediction. The RMSE can be related to the variance of the model.
+Often, RMSE values are difficult to interpret because it is not possible to tell whether a variance
+value is low or high. To overcome this, it is more interesting to normalize the RMSE so that this
+indicator is expressed as a percentage of the mean value of the observations. This can be used to
+make the indicator more meaningful.

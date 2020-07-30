@@ -1,7 +1,9 @@
 * xref:ROOT:index.adoc[Introduction]
 * xref:ROOT:cfd/index.adoc[Introduction to CFD]
 * Benchmarks
+
 ** xref:ROOT:backward-step/index.adoc[Backward Facing Step]
+*** xref:ROOT:RMSE/index.adoc[Root Mean Square Error(RMSE)]
 ** xref:ROOT:3-cylinders-triangular-arrangements/index.adoc[Three Cylinders in Triangular arrangements]
 ** xref:ROOT:3-squares-side-by-side/index.adoc[Three Squares Side-by-Side]
 ** xref:ROOT:3-squares-inline/index.adoc[Three Squares Inline]

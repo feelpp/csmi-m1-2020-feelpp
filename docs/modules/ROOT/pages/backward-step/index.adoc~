@@ -1,0 +1,967 @@
+= facing steps
+:page-plotly: true
+:icons: font
+:stem: latexmath
+:feelpp: Feel++
+:nofooter:
+:toc: left
+:bibtex-file: ibat.bib
+:imagesprefix:
+
+== Presentation of the problem
+=== Introduction
+Regarding problems of <<Computational_Fluid_Dynamics,Computational Fluid Dynamics>> (<<Computational_Fluid_Dynamics,CFD>>) and <<Computational_Solid_Mechanics,Computational Solid Mechanics>> (<<Computational_Solid_Mechanics,CSM>>), there is a solving method to follow, including phases such as the verification phase, or the validation phase. +
+This part deals with the validation phase, the aim is to check if the solved problem is the right one and not another, this can be done by comparing the results to a database.
+
+=== Problem
+This project consists in carrying out a simulation of internal, laminar, incompressible flow in a channel on a backward facing stape <<Backward-Facing Step,Backward-Facing Step>> (<<Backward-Facing Step,BFS>>). Flow separation is a common and interesting phenomenon in fluid mechanics with significant effects in practical application. Among them the backward-facing step flow which represents a very popular reference and validation test for <<Computational_Fluid_Dynamics,Computational Fluid Dynamics>> (<<Computational_Fluid_Dynamics,CFD>>) simulations due to the availability of a good number of good experimental data.
+
+
+=== Methodology
+To solve a <<CFD>> problem, we mainly go through three steps: 
+
+1. Definition of a geometry and a mesh discretizing the computational domain and the numerical methods used. +
+
+2. Numerical solution of the problem +
+
+3. Exploitation of the results +
+
+=== Simutaion Model 
+==== `Backward-Facing Step (BFS)`
+Among the representative models of separation flows is (<<BFS>>),which can be seen in :
+
+- Aerodynamic flows +
+- Engine flows +
+- Heat transfer systems + 
+- Flow around buildings +
+
+The <<BFS>> is a very popular reference and validation model for Computational Fluid Dynamics (CFD) simulations because of the availability of a good number of experimental data.
+Flow separation depends on several parameters such as BFS geometry, inlet and outlet conditions, turbulent intensity, as well as heat transfer conditions.
+Although the geometry is very simple, the flow may have interesting separation regions, which also makes it an ideal candidate for testing numerical boundary conditions.
+
+=== Objectives
+The different objectives are :
+
+1. Compare the results of the velocity profile with numerical results from the literature.+
+
+2. Comparison of the flow attachment location with available experimental data.+
+
+3. Prescribe input condition data.+
+
+== Generalities about the Stokes problem
+=== Navier-Stokes equation:
+
+The Navier-Stokes equations are a system of nonlinear partial differential equations which describethe movement of fluids in a continuous medium, it is demonstrated from a balance of momentumper unit volume for an incompressible fluid it is given in the form:
+
+[sidebar]
+.Equation of Navier-Stokes 
+--
+[stem]
+++++
+\begin{cases}
+\displaystyle
+\rho \frac{\partial u}{\partial t}+\rho (u.\nabla)u=- \nabla p +\rho f+\mu \Delta u ~~~~~~~~(1) \\
+\nabla u = 0  ~~~~~~~~(2)\\
+\frac{\partial \rho}{\partial t}+ u.\nabla\rho = 0  ~~~~~~~~(3)
+\end{cases}
+++++
+
+where:
+
+* stem:[\rho]: density.
+* stem:[\mu] : fluid viscosity.
+* u : fluid velocity.
+* p : fluid pressure.
+* f : external forces exerted on the fluid.
+--
+The first equation (1) describes the conservation of the movement, the second equation (2) represent the incompressibility constraint and the last equation (3)  is the conservation of the mass.
+
+===  Reynolds number
+The Reynolds number is a dimensionless quantity that gives the ratio between the inertial forces and the viscous forces that intervene in the flow. Its expression is as follows:
+
+[sidebar]
+.Rynolds number
+--
+[stem]
+++++
+Re= \frac {\rho UL}{\mu}
+++++
+
+With L and U the scales respective size and flow velocity.
+--
+We recognize the two characteristic times necessary to transport the movement over a length L by diffusion and by convection. Transportation will be the shortest time thus dominating the Reynolds number is the relationship between convective and diffusive effects:
+
+[stem]
+++++
+Re= \frac{effects_{convective}}{effects_{diffusive}}
+++++
+
+
+Viscous forces clearly dominate inertial forces and the corresponding terms can be neglected in the Navier-Stokes equations. When we divide the first equation per stem:[\rho], we get a balance of forces per unit mass, which can also be interpreted as a velocity transport
+equation. In this case we speak of the quasi-static Stokes problem:
+
+[sidebar]
+.Quasi-static Stokes probleme
+--
+[stem]
+++++
+\begin{cases}
+\displaystyle
+\frac{\partial u}{\partial t} + (u.\nabla) u=-\frac{1}{\rho} \nabla (p-p_{0})+ v \Delta u \\
+\nabla u = 0\\
+\end{cases}
+++++
+ 
+Such as:
+
+* stem:[p_0]: the value taken by the pressure in the abscence of flow.
+* stem:[v=\frac{\mu}{\rho}]: the kinematic viscosity of the fluid .
+* stem:[v \Delta u]: a linear term represents the movement quantity transport.
+--
+
+Density does not appear in the movement conservation equation, which is why the movement conservation equation has not been rewritten,  But it can remain present in the external forces (force of gravity).
+
+The Stokes problem is involved in a very large number of phy-sique applications whose dimensions are micrometric, grouped together under the name microfluidic flows, and one of the great originalities of the Stokes problem is its reversibility in time. This means that a swimmer in a Stokes fluid has to break the symmetry of its movement in order to move forward.
+
+== Boundary condition
+
+To solve a [blue]#_fluid mechanics_# problem, we use physical laws to find the mathematical 
+equations which describe the physical properties of the fluid, such as velocity, 
+temperature, pressure, density and viscosity. It is assumed that the fluid is incompressible, 
+it means that the volume of the fluid cannot be reduced by an increase of pressure. 
+Theses equations are called the governing equations of CFD:
+
+=== Continuity equation
+Consider the  fundamental principle of physics proposed by Antoine  Lavoisier, which gives theintergral form of the mass conservation equation:
+
+[sidebar]
+.Mass conservation equation 
+--
+[stem]
+++++
+\frac{\partial}{\partial t} \int_\Omega \rho d \omega +
+\int_{\partial \Omega} \rho v \cdot \vec nd \sigma =
+0 \qquad \forall v \in \mathbb R
+++++
+--
+
+where stem:[\rho(kg/m)] is the density in the domain stem:[\Omega],
+stem:[v(m/s)] is the velocity of the fluid and stem:[n] the unitnormal vector to the boundary stem:[\partial \Omega].
+
+Consider also:
+
+[sidebar]
+.Gausse divergence theorem:
+--
+[stem]
+++++
+\int_\Omega\nabla\cdot vd\omega=\int_{\partial\Omega}v\cdot\vec n d\sigma\qquad\forall v\in\mathbb R
+++++
+--
+
+Using Gauss divergence theorem in the mass conservation equation, 
+we obtain the differential form,which is the continuity equation:
+
+[sidebar]
+.Continuity equation
+--
+[stem]
+++++
+\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho v)=0
+++++
+--
+
+=== Movement equation
+Newton’s second law states that the force of a moving object is equivalent to it's rate of 
+change of movement.  In fluid mechanics, the movement theorem is :
+
+[sidebar]
+.Movement theorem:
+--
+[stem]
+++++
+\sum\vec F_{ext}=\int_\Omega\frac{\partial(\rho v)}{\partial t}d\omega+\int_{\partial\Omega}(\rho\vec v)\cdot(\vec v\cdot\vec n)d\sigma
+++++
+--
+
+And it was converted to differential form by the french mathematician Cauchy, 
+with the applicationof the divergence theorem.
+
+The result is the movement equation :
+
+[sidebar]
+.Movement equation
+--
+[stem]
+++++
+\rho\big(\frac{\partial v}{\partial t}+v\cdot\nabla v\big)=-\nabla p+\mu\Delta v+\rho g
+++++
+--
+
+where stem:[p (Pa)] is the pressure, stem:[\mu] is the dynamic viscosity and stem:[g] is the external forces acting on the fluid, such as gravity.
+
+=== Energy equation
+
+[sidebar]
+.Energy equation
+--
+[stem]
+++++
+\frac{\partial(\rho h-p)}{\partial t}+\nabla(\rho vh)=\nabla\big((\mu+\frac{\mu_t}{\sigma_t})\nabla h\big)-S_h
+++++
+--
+where stem:[h = U+pV(J)] is the internal energy of the system, V is the volume, stem:[\mu_{t}] 
+is the thurbulence viscosity, stem:[\sigma_t] is a constant and stem:[S_h] is the volumetric heat source.
+
+== Presentation of the test case
+
+=== Presentation
+This study will be based on laminar flow around a step laid in a flat channel. The fluid is subjected to a sudden widening that causes an inverse pressure gradient, where the flow separates into several zones, among which a recirculation zone is formed, noted stem:[x_r], where the flow closes to return to the step.
+
+The Reynolds number denoted Re for this flow is calculated from the channel height S, the
+average flow velocity stem:[U_{ave}] and the kinematic viscosity v, and is defined by:
+
+[stem]
+++++
+Re = \frac{SU_{ave}}{v}
+++++
+
+And as stem:[v=\frac{\mu}{\rho}] so:
+
+[stem]
+++++
+Re = \frac{S\rho U_{ave}}{\mu}
+++++
+
+When the flow has low Reynolds number values, it is said to be stationary, while flows with higher
+Reynolds number values become turbulent and the average length of the recirculation zone decreases
+until a constant saturation value is reached. In this case, we are only interested in two different
+Reynolds number values: `Re=389` and `Re=1095`.
+
+=== Geometry and data
+The computational domain stem:[\Omega] is a channel with a descending step as shown in the figure below :
+
+image::{imagesprefix}geo.png[]
+
+The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the tables below summarize these data.
+
+.Geometric data table
+
+[width="100%",options="header,footer"]
+|====================
+| Notation| Description  | Value  | Unit 
+|stem:[L1]| Length of the upstream section   | 2e-1   | stem:[m]
+|stem:[L2]| Length of the downstream section | 5e-1   | stem:[m] 
+|stem:[S] | Step height                      | 4.9e-3 | stem:[m]
+|stem:[H] | Inlet channel height             | 5.2e-3 | stem:[m] 
+|stem:[U_{int}]|Inlet velocity               |   -    | stem:[m/s]
+|stem:[U_{ave}]| Average velocity            |   -    | stem:[m]/s
+|====================
+
+.Physical data table
+
+[width="100%",options="header,footer"]
+|====================
+| Notation| Description           | Value     | Unit 
+|stem:[\rho]| Density             | 1.23      | stem:[Kg/m^3]
+|stem:[\mu] | Dynamic viscosity   | 1.79e-5   | stem:[Pa.s] 
+|stem:[v]   | Kinematic viscosity | 1.4553e-5 | stem:[m^2/s]
+|====================
+
+=== Boundary conditions
+
+In this study 3 boundary conditions are imposed:
+
+* Inlet condition
+
+On boundary (1) a [bleu]#_Poiseuille_# [bleu]#_profile_# is placed as an entry condition, it is
+defined by:
+
+[stem]
+++++
+u = U_{int}= 6U_{ave}\frac{y_1}{H}(1-\frac{y_1}{H})
+++++
+
+such as stem:[y_1=y-S], and stem:[U_{ave}] are derived from the selected Reynolds number as:
+
+[stem]
+++++
+U_{ave} = \frac{vRe}{S} = \frac{\mu Re}{\rho S}
+++++
+
+At the entrance the profile of Poiseuille is represented by the graphe below:
+
+- For `Re=389`:
+
+image::{imagesprefix}uinit_re389.png[]
+
+- For `Re=1095`:
+
+image::{imagesprefix}uinit_re1095.png[]
+
+* Wall conditions 
+
+On the limits (2), i.e. on the upper and lower wall we have :
+[stem]
+++++
+u=0
+++++
+
+* Outlet condition
+
+On boundary (3) the exit boundary condition is [bleu]#_free_#, which means that no
+constraint is imposed on the exit boundary.
+
+== Conformal blocks division
+
+To study the laminar flow around a backward Facing Step we have devised the geometry
+in conformal blocks as the figure below illustrates:
+
+image::{imagesprefix}geo_bloc.png[]
+
+=== Mesh
+
+After cutting our domain, we move on to meshing to generate fully structured uniform triangular
+cells, the figure below shows a part of the generated mesh:
+
+image::{imagesprefix}mesh.png[]
+
+The study will be based on velocity profiles at different downstream locations, represented by
+the different vertical lines stem:[x/S] for `Re = 389` and `Re = 1095`.
+
+== Results
+
+NOTE: For the readability of the results, we have separated the calculations for `Re= 389` and those for
+`Re=1095`.
+
+=== `Running the case`:
+
+The command line to run this cases is
+
+[source,sh]
+----
+mpirun -np 4 feelpp_toolbox_fluid--config-file laminar.cfg--fluid.snes-monitor=1--fluid.gmsh.hsize=3e-4
+----
+
+++++
+<button class="btn" data-clipboard-target="#command-line-cfd1">
+Copy command line to clipboard
+</button>
+++++
+
+Once the command is executed the results are exported to ParaView for viewing the flow by executing:
+
+[source,sh]
+----
+rsync -avz atlas.math.unistra.fr:/feel
+----
+
+++++
+<button class="btn" data-clipboard-target="#command-line-cfd1">
+Copy command line to clipboard
+</button>
+++++
+
+=== Results for `Re=389`
+
+In this part the problem is dealt with in a stationary frame.
+
+NOTE: The solution does not depend on the
+time, more precisely the flow profile is to long at the points where the flow variation is not visible.
+
+==== Data files 
+
+===== `JSON-file`:
+
+[source,json]
+.laminar.json
+----
+{
+    "Name": "Laminar, Isothermal Backward Facing Step Benchmark",
+    "ShortName":"ecoulementstationnaire",
+    "Models":
+    {
+         "equations": "Navier-Stokes"
+    },
+    "Parameters":
+    {
+        "h":"5.2e-3",       
+        "s":"4.9e-3",       
+        "uave":"0.54433"          <1>
+    },
+    "Materials":
+    {
+        "omega":
+        {
+            "rho":"1.23",
+            "mu":"1.79e-5"
+        }
+    }, 
+    "BoundaryConditions":
+    {
+        "velocity":
+        {
+            "Dirichlet":
+            {
+                "inlet":
+                {
+                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
+                },
+                "wall1":
+                {
+                    "expr":"{0,0}"
+                },
+                "wall2":
+                {
+                    "expr":"{0,0}"
+                },
+                "wall3":
+                {
+                    "expr":"{0,0}"
+                }
+            }
+        },
+        "fluid":
+        {
+            "outlet":
+            {
+                "outlet":
+                {
+                    "expr":"0" 
+                }
+            }
+        }
+    },
+    "PostProcess":
+    {   
+        "Exports":
+        {
+            "fields":["velocity"]
+        }
+
+    }
+}
+----
+
+<1> `uave` is the average velocity for `Re=389`.
+
+===== `CFG-file`:
+
+[source,cfg]
+.laminar.cfg
+----
+directory=resulats/stationnaire389/P1
+
+[case]
+discretization= P2P1G1
+dimension=2
+
+[fluid]
+filename=$cfgdir/laminar.json
+mesh.filename=$cfgdir/laminar.geo
+gmsh.hsize=0.0005
+
+solver= Newton 
+linearsystem-cst-update=false
+jacobian-linear-update=false
+
+snes-monitor=true
+pc-type= gams
+snes-rtol=1e-10
+
+[ts]
+steady=true
+----
+
+==== Comparaison between simulated and theorical results:
+
+To visualize the flow profile we pass to the graphical representation of the simulated results using [bleu]#_plotly_# [bleu]#_bibliography_#, then we will compare the results obtained in the simulation for Re=389 with the results of the literature.
+
+===== Simulated results:
+
+The graph below show as the flow profile simulated at the different vertical lines stem:[x_r/S]:
+
+++++
+<div id="plotly_simulation"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas1_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas1_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=5.41',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas2_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas2_rslt_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'x/S=11.84',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas3_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas3_rslt_length'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'Simulated results'
+      };
+      Plotly.plot(plotly_simulation,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation);
+    }
+  );
+</script>
+++++
+
+
+
+===== Comparaison
+
+The graph below show the comparison of the theorical solution with simulate flow solution for:
+
+* stem:[x_r/S=0.0]:
+
+++++
+<div id="plotly_comparaison1"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas1_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas1_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas1_theo_velocity'),
+        y: feelpp_unpack(rows,'cas1_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison1,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison1);
+    }
+  );
+</script>
+++++
+
+* stem:[x_r/S=5.41]:
+
+++++
+<div id="plotly_comparaison2"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=5.41',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas2_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas2_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=5.41',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas2_theo_velocity'),
+        y: feelpp_unpack(rows,'cas2_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison2,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison2);
+    }
+  );
+</script>
+++++
+
+* stem:[x_r/S=11.84]:
+
+++++
+<div id="plotly_comparaison3"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=11.84',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas3_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas3_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=11.84',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas3_theo_velocity'),
+        y: feelpp_unpack(rows,'cas3_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison3,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison3);
+    }
+  );
+</script>
+++++
+
+Based on the results obtained during the simulation and the theoretical results we calculate the <<RMSE>> for each case, the results are grouped in the table below:
+
+.Root Mean Square Error,Observation average and Model variance 
+
+[width="100%",options="header,footer"]
+|====================
+| stem:[x_r/S]| RMSE           | Observation average | Model variance
+|0.0          |3.63            | 44.47               | 8.16 %
+|5.41         |8.54            | 24.34               | 35.08 %
+|11.84        |8.86            | 25.31               | 35 %
+|====================
+
+Indeed, according to the results the variance of the model for stem:[x_r/S=0.0], stem:[x_r/S=5.41] and stem:[x_r/S=11.84] corresponds to only 8.16%, 35.08% and 35.00% of the mean of the observations respectively, we can therefore say that the model has a high variance at stem:[x_r/S=5.41] and stem:[x_r/S=11.84] contrary at stem:[x_r/S=0.0] the variance is low.
+
+=== Results for `Re=1095`
+
+To have a stationary solution when Re=1095 the problem has to be treated in an unstationary
+frame.
+ 
+NOTE: In this case the solution will depend on time.
+
+==== Data files
+ 
+===== `JSON-file`:
+
+[source,json]
+.laminar.json
+----
+{
+    "Name": "Laminar, Isothermal Backward Facing Step Benchmark",
+    "ShortName":"ecoulementstationnaire",
+    "Models":
+    {
+        "equations":"Navier-Stokes"
+    },
+    "Parameters":
+    {
+        "h":"5.2e-3",
+        "s":"4.9e-3",
+        "uave":"1.5322"        <1>
+    },
+    "Materials":
+    {
+        "omega":
+        {
+            "rho":"1.23",
+            "mu":"1.79e-5"
+        }
+    },
+    "BoundaryConditions":
+    {
+        "velocity":
+        {
+            "Dirichlet":
+            {
+                "inlet":
+                {
+                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
+                },
+                "wall1":
+                {
+                    "expr":"{0,0}"
+                },
+                "wall2":
+                {
+                    "expr":"{0,0}"
+                },
+                "wall3":
+                {
+                    "expr":"{0,0}"
+                }
+            }
+
+        },
+        "fluid":
+        {
+            "outlet":
+            {
+                "outlet":
+                {
+                    "expr":"0" 
+                }
+            }
+        }
+    },
+    "PostProcess":
+    {
+        "Exports":
+        {
+            "fields":["velocity"]
+        }
+    }
+}
+----
+
+<1> `uave` is the average velocity for `Re=1095`.
+
+===== `CFG-file`:
+
+[source,cfg]
+.laminar.cfg
+----
+directory=resulats/instationnaire1095/P1
+
+[case]
+discretization= P2P1G1
+dimension=2
+
+[fluid]
+filename=$cfgdir/laminar.json
+mesh.filename=$cfgdir/lami.geo
+gmsh.hsize=0.0005
+
+solver= Newton
+linearsystem-cst-update=false
+jacobian-linear-update=false
+
+ts.steady=true
+snes-monitor=true
+pc-type= gams
+
+[fluid.bdf]
+order=2
+
+[ts]
+time-step=0.1
+time-final=10
+----
+
+===== Comparaison between simulated and theorical results:
+
+To visualize the flow profile we pass to the graphical representation of the simulated results using [bleu]#_plotly_# [bleu]#_bibliography_#, then we will compare the results obtained in the simulation for
+Re=1095 with the results of the literature.
+
+===== Simulated results:
+
+The graph below show as the flow profile simulated at the different vertical lines stem:[x_r/S]:
+
+++++
+<div id="plotly_simulation2"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas12_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas12_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=7.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas22_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas22_rslt_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'x/S=19.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas32_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas32_rslt_length'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'Simulated results'
+      };
+      Plotly.plot(plotly_simulation2,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation2);
+    }
+  );
+</script>
+++++
+
+===== Comparaison
+
+The graph below show the comparison of the theorical solution with simulate flow solution for:
+
+* stem:[x_r/S=0.0]:
+
+++++
+<div id="plotly_comparaison12"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas12_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas12_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=0.0',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas12_theo_velocity'),
+        y: feelpp_unpack(rows,'cas12_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison12,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison12);
+    }
+  );
+</script>
+++++
+
+* stem:[x_r/S=7.04]:
+
+++++
+<div id="plotly_comparaison22"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=7.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas22_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas22_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=7.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas22_theo_velocity'),
+        y: feelpp_unpack(rows,'cas22_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison22,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison22);
+    }
+  );
+</script>
+++++
+
+* stem:[x_r/S=19.04]:
+
+++++
+<div id="plotly_comparaison32"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f21fa4bb0e95704a75f85e9/download",
+   function(err,rows){
+      var data = [{
+        name: 'x/S=19.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas32_rslt_velocity'),
+        y: feelpp_unpack(rows,'cas32_rslt_length'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'x/S=19.04',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'cas32_theo_velocity'),
+        y: feelpp_unpack(rows,'cas32_theo_length'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      }];
+
+      var layout = {
+        title: 'Temperature'
+      };
+      Plotly.plot(plotly_comparaison32,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_comparaison32);
+    }
+  );
+</script>
+++++
+
+Based on the results obtained during the simulation and the theoretical results we calculate the <<RMSE>> for each case, the results are grouped in the table below:
+
+.Root Mean Square Error,Observation average and Model variance 
+
+[width="100%",options="header,footer"]
+|====================
+| stem:[x_r/S]| RMSE           | Observation average | Model variance
+|0.0          |9.33            | 134.03              | 6.96 %
+|7.04         |10.05           | 67.86               | 14.80 %
+|19.04        |12.03           | 57.79               | 20.81 %
+|====================
+
+Indeed, according to [Table 6] the variance of the model for stem:[x_r/S=0.0], stem:[x_r/S=7.04] and stem:[x_r/S=19.04] corresponds to only 6.96%, 14.80% and 20.81% of the mean of the observations respectively, so we can say that the model has a low variance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

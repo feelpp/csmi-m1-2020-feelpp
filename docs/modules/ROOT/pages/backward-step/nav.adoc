@@ -1,5 +1,0 @@
-** xref:ROOT:pages:backward-step:simulation:inctroduction_laminar/index.adoc[Presentation]
-** xref:ROOT:pages:backward-step:simulation:equation_mathematique/index.adoc[Navier-stokes equation]
-** xref:ROOT:pages:backward-step:simulation:condition_au_bord/index.adoc[Boundary condition]
-** xref:ROOT:pages:backward-step:simulation:cas_test:introduction_cas_test/index.adoc[The test case]
-** xref:ROOT:pages:backward-step:simulation:resultas/index.adoc[Results]
