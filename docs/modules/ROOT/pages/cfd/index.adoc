@@ -3,16 +3,15 @@
 
 == What is a fluid ?
 
-A fluid is a substance that flows (in other words, it takes the shape of its container) and does not resist to deformation (i.e. slips when moved). 
-The terms fluid and liquid are often used interchangeably, but technically, the term fluid can refer to both a liquid and a gas. 
+A fluid is a substance that flows (in other words, it takes the shape of its container) and does not resist deformation (i.e. slips when moved). The terms fluid and liquid are often used interchangeably, but technically, the term fluid can refer to both a liquid and a gas.
 
-The distinction between liquids and gases can affect the way in which the fluid is modeled, but both have the same basic fluid formulae and comparable properties.
+The distinction between liquids and gases can affect how the fluid is modeled, but both have the same basic fluid formulae and comparable properties.
 
 == Macroscopic properties of a fluid:
 
 1.Dynamic viscosity: 
 
-The viscosity of a fluid characterizes its resistance to speed of deformation (movement) caused by the application of a constraint (Force/surface).
+The viscosity of a fluid characterizes its resistance to a  speed of deformation (movement) caused by the application of a constraint (Force/surface).
 
 2.Compressibility:
 
@@ -26,17 +25,29 @@ Two coefficients are used:
 
 3.Thermal diffusion:
 
-The quantity stem:[q = \frac{Q}{A}] is called heat flux density. It is a thermal power (Watts) exchanged per unit of surface area and is set: stem:[q = \frac{Q}{A} = - \lambda \frac{T1-T0}{H}].
+The quantity 
 
-The positive number stem:[\lambda] is called the coefficient of thermal conductivity. It is expressed in W.m/K.
+[stem]
+++++
+q = \frac{Q}{A}
+++++
+
+is called heat flux density. It is a thermal power (Watts) exchanged per unit of surface area and is set: 
+
+[stem]
+++++
+q = \frac{Q}{A} = - \lambda \frac{T1-T0}{H}
+++++
+
+The positive number stem:[\lambda] is called the coefficient of thermal conductivity, it is expressed in W.m/K.
 
 == CFD insight
 
 Computational fluid dynamics (CFD) is one of the most quickly emerging fields in applied sciences.
 
-CFD mainly deals with the numerical analysis of fluid dynamics problems,which embodies differential calculus. The equations involved in fluid dynamics are Navier–Stokes equations. Until now, solutions to Navier–Stokes equations have not been explicitly found except for some cases such as Poiseuille flow, Couette flow, and Stokes flow with certain assumptions.
+CFD mainly deals with the numerical analysis of fluid dynamics problems, which embodies differential calculus. The equations involved in fluid dynamics are Navier–Stokes equations. Until now, solutions to Navier–Stokes equations have not been explicitly found except for some cases such as Poiseuille flow, Couette flow, and Stokes flow with certain assumptions.
 
-Thus, CFD is the process of converting the partial differential equations of fluid dynamics into simple algebraic equations and then solving them numerically to obtain some meaningful result.
+Thus, CFD is the process of converting the partial differential equations of fluid dynamics into simple algebraic equations and then solving them numerically to obtain some meaningful results.
 
 == CFD prosses
 
@@ -52,14 +63,14 @@ This phase consists in solving the guiding equations of the flow, this work is d
 
 * Post-processing: 
 
-This step is based on the visualization and interpretation of the results for development or optimization of the product. nd finally for the validation of the results they are compared with the experimental data.
+This step is based on the visualization and interpretation of the results for the development or optimization of the product. Finally for the validation of the results they are compared with the experimental data.
 
 All three processes are interdependent
 
 == Generalities about the Stokes problem
 === Navier-Stokes equation:
 
-The Navier-Stokes equations are a system of nonlinear partial differential equations which describethe movement of fluids in a continuous medium, it is demonstrated from a balance of momentumper unit volume for an incompressible fluid it is given in the form:
+The Navier-Stokes equations are a system of non linear partial differential equations which describe the movement of fluids in a continuous medium, it is demonstrated from a balance of momentum per unit volume for an incompressible fluid it is given in the form:
 
 [sidebar]
 .Equation of Navier-Stokes 
@@ -68,24 +79,56 @@ The Navier-Stokes equations are a system of nonlinear partial differential equat
 ++++
 \begin{cases}
 \displaystyle
-\rho \frac{\partial u}{\partial t}+\rho (u.\nabla)u=- \nabla p +\rho f+\mu \Delta u ~~~~~~~~(1) \\
-\nabla u = 0  ~~~~~~~~(2)\\
-\frac{\partial \rho}{\partial t}+ u.\nabla\rho = 0  ~~~~~~~~(3)
+ \overrightarrow{\nabla}.\overrightarrow{v}=0~~~~~~~~(1)\\
+
+ \rho \frac{\partial \overrightarrow{v}}{\partial t} + \rho(\overrightarrow{v}.\overrightarrow{\nabla})\overrightarrow{v}=-\overrightarrow{\nabla}p+\rho \overrightarrow{f}_{ext}+\mu \Delta \overrightarrow{v}     ~~~~~~~~(2) \\
 \end{cases}
 ++++
 
 where:
 
-* stem:[\rho]: density.
-* stem:[\mu] : fluid viscosity.
-* u : fluid velocity.
-* p : fluid pressure.
-* f : external forces exerted on the fluid.
+* stem:[\rho]: fluid density.
+* stem:[p(\overrightarrow{r},t)]: pressure, it is the isotropic part of the stress tensor.
+* stem:[-\overrightarrow{\nabla}p]:  normal stresses related to pressure forces.
+* stem:[\overrightarrow{f}_{ext}(\overrightarrow{r},t)]: force per unit mass.
 --
-The first equation (1) describes the conservation of the movement, the second equation (2) represent the incompressibility constraint and the last equation (3)  is the conservation of the mass.
+The first equation (1) is zero divergence equation of the velocity field stem:[\overrightarrow{v}(\overrightarrow{r},t)], it ensures the incompressibility of the fluid. Each term of the second equation (2) represents a force per unit of volume such as.
+
+When we divide the balance equation (2) of forces per unit volume stem:[\rho], we get a balance of forces per unit mass, which can also be interpreted as a velocity transport equation:
+
+[sidebar]
+.Velocity Transport Equation 
+--
+[stem]
+++++
+\frac{\partial \overrightarrow{v}}{\partial t} + (\overrightarrow{v}.\overrightarrow{\nabla})\overrightarrow{v} = -\frac{1}{\rho}\overrightarrow{\nabla}(p-p_{0})+ V \Delta \overrightarrow{v}
+++++
+
+where: 
+
+* stem:[V=\frac{\mu}{\rho}]: kinematic viscosity of the fluid 
+* stem:[V \nabla \overrightarrow{v}]: linear term, he represents the movement quantity transport.
+* stem:[p_0]: pressure in the absence of flow.
+--
 
 ===  Reynolds number
-The Reynolds number is a dimensionless quantity that gives the ratio between the inertial forces and the viscous forces that intervene in the flow. Its expression is as follows:
+The Reynolds number is a dimensionless quantity that gives the ratio between the inertial forces and the viscous forces that intervene in the flow.
+
+We will write the Navier-Stokes equation using dimensionless combinations (which will be noted by premiums) of the different sizes involved. Let L and U be the scales respective size and flow velocity, we have:
+
+stem:[\overrightarrow{r}=L\overrightarrow{r}^{'}]; 
+stem:[\overrightarrow{v}=L\overrightarrow{v}^{'}];
+stem:[p-p_{0}=(\rho U^{2})p^{'}];
+stem:[t=\frac{L}{U}t^{'}]
+
+So the Navier-Stokes equation becomes:
+[stem]
+++++
+\frac{\partial \overrightarrow{v}^{'}}{\partial t^{'}} + (\overrightarrow{v}^{'}.\overrightarrow{\nabla}^{'})\overrightarrow{v}^{'}=-\overrightarrow{\nabla}^{'}p^{'}+  
+\frac{1}{Re}\Delta^{'} \overrightarrow{v}^{'}
+++++
+
+The expression of Rynolds number is as follows
 
 [sidebar]
 .Rynolds number
@@ -94,42 +137,24 @@ The Reynolds number is a dimensionless quantity that gives the ratio between the
 ++++
 Re= \frac {\rho UL}{\mu}
 ++++
-
-With L and U the scales respective size and flow velocity.
 --
-We recognize the two characteristic times necessary to transport the movement over a length L by diffusion and by convection. Transportation will be the shortest time thus dominating the Reynolds number is the relationship between convective and diffusive effects:
+
+We recognize the two characteristic times necessary to transport the movement over a length L by diffusion and by convection. Transportation will be the shortest time thus dominating, the Reynolds number is the relationship between convective and diffusive effects:
 
 [stem]
 ++++
 Re= \frac{effects_{convective}}{effects_{diffusive}}
 ++++
 
+It is also often useful to understand the Reynolds number as the relationship between the terms of inertia and viscous forces of the Navier-Stokes (2) equation such as:
 
-Viscous forces clearly dominate inertial forces and the corresponding terms can be neglected in the Navier-Stokes equations. When we divide the first equation per stem:[\rho], we get a balance of forces per unit mass, which can also be interpreted as a velocity transport
-equation. In this case we speak of the quasi-static Stokes problem:
-
-[sidebar]
-.Quasi-static Stokes probleme
---
 [stem]
 ++++
-\begin{cases}
-\displaystyle
-\frac{\partial u}{\partial t} + (u.\nabla) u=-\frac{1}{\rho} \nabla (p-p_{0})+ v \Delta u \\
-\nabla u = 0\\
-\end{cases}
+Re= \frac{inertia_{forces}}{viscous_{forces}}
 ++++
- 
-Such as:
 
-* stem:[p_0]: the value taken by the pressure in the abscence of flow.
-* stem:[v=\frac{\mu}{\rho}]: the kinematic viscosity of the fluid .
-* stem:[v \Delta u]: a linear term represents the movement quantity transport.
---
 
-Density does not appear in the movement conservation equation, which is why the movement conservation equation has not been rewritten,  But it can remain present in the external forces (force of gravity).
-
-The Stokes problem is involved in a very large number of phy-sique applications whose dimensions are micrometric, grouped together under the name microfluidic flows, and one of the great originalities of the Stokes problem is its reversibility in time. This means that a swimmer in a Stokes fluid has to break the symmetry of its movement in order to move forward.
+The Stokes problem is involved in a very large number of physical applications, and one of the great originalities of the Stokes problem is its reversibility over time. This means that a swimmer in a Stokes fluid has to break the symmetry of its movement to move forward.
 
 == Governing Equations
 
@@ -188,7 +213,7 @@ change of movement.  In fluid mechanics, the movement theorem is :
 --
 [stem]
 ++++
-\sum\vec F_{ext}=\int_\Omega\frac{\partial(\rho v)}{\partial t}d\omega+\int_{\partial\Omega}(\rho\vec v)\cdot(\vec v\cdot\vec n)d\sigma
+\sum\vec f_{ext}=\int_\Omega\frac{\partial(\rho v)}{\partial t}d\omega+\int_{\partial\Omega}(\rho\vec v)\cdot(\vec v\cdot\vec n)d\sigma
 ++++
 --
 
@@ -224,7 +249,7 @@ is the thurbulence viscosity, stem:[\sigma_t] is a constant and stem:[S_h] is th
 
 === Simutaion Model 
 ==== `Backward-Facing Step (BFS)`
-Among the representative models of separation flows is <<BFS>>,which can be seen in :
+Backward-Facing Step (BFS) flow is one representative model for separation flows, which can be widely seen in:
 
 - Aerodynamic flows +
 - Engine flows +
@@ -236,6 +261,13 @@ Flow separation depends on several parameters such as BFS geometry, inlet and ou
 Although the geometry is very simple, the flow may have interesting separation regions, which also makes it an ideal candidate for testing numerical boundary conditions.
 
 
+
+[bibliography]
+== Bibliography 
+
+* L.Chen, A review of Backward-Facing Step (BFS) flow mechanisms, heat transfer and control, June 2018, Pages 194-216
+
+* S.Jamshed, Introduction to CFD, December 2015
 
 
 
