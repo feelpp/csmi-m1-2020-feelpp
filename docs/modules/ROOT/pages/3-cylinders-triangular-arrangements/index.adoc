@@ -1,6 +1,148 @@
 = Flow around three cylinder in equilaterial triangular arrangements
+:page-plotly: true
+:icons: font
+:stem: latexmath
+:feelpp: Feel++
+:nofooter:
+:toc: left
+:bibtex-file: ibat.bib
+:imagesprefix:
+ifdef::env-github,env-browser,env-vscode[:imagesprefix: ../images/]
 
 NOTE: this benchmark is based on <<chen-2020>>.
+
+== Presentation of the test case
+
+=== Presentation
+This study is based on the flow of a fluid in front of 3 circular and identical cylinders.
+The cylinders are arranged in an equilateral rectangle, one of the cylinders is placed upstream and the other two side by side downstream.
+
+In this test case, we are particularly interested in the effect of the spacing ratio L/D and the number of Reynolds Re on the flow, where L is the center-to-center spacing of the cylinder and D is the cylinder diameter.
+
+The numerical results, obtained in this study, will be compared with those found in the literature, for different gaps 
+stem:[L/D \in [1,6]] and a Reynolds number stem:[Re \in [50,300]].
+
+=== Geometry and data
+The arrangement of the cylinders in the calculation area stem:[Omega] is shown in the figure below :
+
+image::{imagesprefix}geo2.png[]
+
+The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
+
+
+.Geometric data table
+
+[width="100%",options="header,footer"]
+|====================
+| Notation| Description  | Value  | Unit 
+|stem:[D] | cylinder diameter  |  -  | stem:[m] 
+|stem:[L] | the center-to-center spacing of the cylinder  |  -  | stem:[m]
+|stem:[H] | side of the domain        | 200D | stem:[m] 
+|stem:[U] | Inlet velocity            |  -   | stem:[m/s]
+|====================
+
+.Physical data table
+
+[width="100%",options="header,footer"]
+|====================
+| Notation| Description           | Value     | Unit 
+|stem:[\rho]| Density             |    -      | stem:[Kg/m^3]
+|stem:[\mu] | Dynamic viscosity   |    -      | stem:[Pa.s] 
+|stem:[v]   | Kinematic viscosity |    -       | stem:[m^2/s]
+|====================
+
+
+=== Boundary conditions
+In this study 3 boundary conditions are imposed:
+
+* Inlet condition
+
+On boundary (1) a Dirichlet-type condition is imposed and a [bleu]#_Poiseuille_# [bleu]#_profile_# is placed as an entry condition, it's defined by:
+
+[stem]
+++++
+u = U \\
+v = 0
+++++
+
+At the entrance the Poiseuille profile is represented by the graphe below:
+
+
+
+* Wall conditions 
+
+On the limits (3), i.e. on the upper and lower wall we have :
+
+[stem]
+++++
+\frac{\partial{u}}{\partial{x}}=0\\
+\frac{\partial{v}}{\partial{x}}=0
+++++
+
+* Outlet condition
+
+On boundary (2) (i.e the exit boundary condition) a Neumann-type condition is imposed
+
+[stem]
+++++
+\frac{\partial{u}}{\partial{y}}=0\\
+v=0
+++++
+
+=== Mesh
+we move on to meshing to generate fully structured uniform triangular
+cells, the figure below shows a part of the generated mesh:
+
+
+
+
+
+
+== Results
+
+=== `Running the case`:
+
+The command line to run this cases is
+
+[source,sh]
+----
+mpirun -np 4 feelpp_toolbox_fluid--config-file cylindre.cfg--fluid.snes-monitor=1--fluid.gmsh.hsize=10
+----
+
+++++
+<button class="btn" data-clipboard-target="#command-line-cfd1">
+Copy command line to clipboard
+</button>
+++++
+
+Once the command is executed the results are exported to ParaView for viewing the flow by executing:
+
+[source,sh]
+----
+rsync -avz atlas.math.unistra.fr:/feel
+----
+
+++++
+<button class="btn" data-clipboard-target="#command-line-cfd1">
+Copy command line to clipboard
+</button>
+++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [bibliography]
 == Bibliography 
