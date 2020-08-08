@@ -73,7 +73,14 @@ u = U \\
 v = 0
 ++++
 
-At the entrance the Poiseuille profile is represented by the graphe below:
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$cylinders/cylinders.json[tag=inlet]
+----
+
+
+At the entrance the Poiseuille profile is represented by the graph below:
 
 
 
@@ -86,17 +93,25 @@ On the limits (3), i.e. on the upper and lower wall we have :
 \frac{\partial{u}}{\partial{x}}=0\\
 \frac{\partial{v}}{\partial{x}}=0
 ++++
-
+.json configuration for the wall boundary condition
+[source,json,indent=0]
+----
+include::example$cylinders/cylinders.json[tag=walls]
+----
 * Outlet condition
 
 On boundary (2) (i.e the exit boundary condition) a Neumann-type condition is imposed
 
+.json configuration for the outlet boundary condition
 [stem]
 ++++
 \frac{\partial{u}}{\partial{y}}=0\\
 v=0
 ++++
-
+[source,json,indent=0]
+----
+include::example$cylinders/cylinders.json[tag=outlet]
+----
 === Mesh
 we move on to meshing to generate fully structured uniform triangular
 cells, the figure below shows a part of the generated mesh:
@@ -149,12 +164,13 @@ include::example$cylinders/cylinders.cfg[]
 
 === json file
 
-[source,json]
+Here the full json configuration file
+
+.Json file
+[source,json,indent=0]
 ----
 include::example$cylinders/cylinders.json[]
 ----
-
-
 
 
 

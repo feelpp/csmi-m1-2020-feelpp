@@ -10,7 +10,7 @@
         "omega":
         {
             "rho":"1",
-            "mu":"1e-6"
+            "mu":"1"
         }
     }, 
     "BoundaryConditions":
@@ -19,10 +19,13 @@
         {
             "Dirichlet":
             {
+                // tag::inlet[]
                 "Inlet":
                 {
                     "expr":"{0.02,0}"
                 },
+                // end::inlet[]
+                // tag::walls[]
                 "Wall1":
                 {
                     "expr":"{0,0}"
@@ -31,8 +34,10 @@
                 {
                     "expr":"{0,0}"
                 }
+                 // end::walls[]
             }
-        },    
+        }, 
+        // tag::outlet[]
         "fluid":
         {
           "outlet":
@@ -43,6 +48,7 @@
             }
           }
         }
+        // end::outlet[]
     },
     "PostProcess":
     {   
