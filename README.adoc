@@ -30,7 +30,7 @@ To preview the documentation
 
 ----
 cd docs
-node-srv -p 8000 build/site
+node-srv -p 8000 public
 ----
 
 then point your browser to http://localhost:8000
