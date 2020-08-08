@@ -13,4 +13,23 @@ This is a {feelpp} Template Project. It serves as a template for {feelpp} projec
 ** ctest configuration
 * antora environment
 * github actions
-* vscode integration using container
+* vscode integration using container 
+
+== Generate the documentation locally
+
+* [ ]  https://docs.antora.org/antora/2.3/install-and-run-quickstart/[install Antora]
+
+----
+cd docs
+antora site.yml
+----
+
+* [ ]  https://docs.antora.org/antora/2.3/preview-site/[install node-srv]
+
+To preview the documentation
+
+----
+cd docs
+node-srv build/site
+----
+
