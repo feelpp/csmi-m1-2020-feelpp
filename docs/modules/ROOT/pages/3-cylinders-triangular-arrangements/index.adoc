@@ -22,34 +22,42 @@ In this test case, we are particularly interested in the effect of the spacing r
 The numerical results, obtained in this study, will be compared with those found in the literature, for different gaps 
 stem:[L/D \in [1,6]] and a Reynolds number stem:[Re \in [50,300]].
 
-=== Geometry and data
+=== Geometry setting
 The arrangement of the cylinders in the calculation area stem:[Omega] is shown in the figure below :
 
-image::{imagesprefix}geo2.png[]
+.Geometric setting for the 3 cylinder with equilaterial triangle arrangement
+image::{imagesprefix}3-cylinders-triangle/cylinders.png[]
 
 The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
 
+.Geo file 
+[source,cpp,indent=0,small]
+----
+include::example$cylinders/cylinders.geo[]
+----
+
 
 .Geometric data table
-
 [width="100%",options="header,footer"]
-|====================
+|===
 | Notation| Description  | Value  | Unit 
 |stem:[D] | cylinder diameter  |  -  | stem:[m] 
 |stem:[L] | the center-to-center spacing of the cylinder  |  -  | stem:[m]
 |stem:[H] | side of the domain        | 200D | stem:[m] 
 |stem:[U] | Inlet velocity            |  -   | stem:[m/s]
-|====================
+|===
+
+=== Physical setting
 
 .Physical data table
 
 [width="100%",options="header,footer"]
-|====================
+|===
 | Notation| Description           | Value     | Unit 
 |stem:[\rho]| Density             |    -      | stem:[Kg/m^3]
 |stem:[\mu] | Dynamic viscosity   |    -      | stem:[Pa.s] 
 |stem:[v]   | Kinematic viscosity |    -       | stem:[m^2/s]
-|====================
+|===
 
 
 === Boundary conditions
@@ -94,10 +102,6 @@ we move on to meshing to generate fully structured uniform triangular
 cells, the figure below shows a part of the generated mesh:
 
 
-
-
-
-
 == Results
 
 === `Running the case`:
@@ -134,9 +138,21 @@ Copy command line to clipboard
 
 
 
+== Configuration files
 
+=== cfg file
 
+[source,ini]
+----
+include::example$cylinders/cylinders.cfg[]
+----
 
+=== json file
+
+[source,json]
+----
+include::example$cylinders/cylinders.json[]
+----
 
 
 
