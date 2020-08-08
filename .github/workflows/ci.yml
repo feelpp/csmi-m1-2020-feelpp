@@ -12,5 +12,5 @@ jobs:
         PIPELINE: "feelpp/cemosis-docs"
         COMMIT: "HEAD"
         BRANCH: "master"
-        MESSAGE: ":github: Triggered from a GitHub Action by Feelpp CFD Project ${{ github.event.head_commit.message }}"
+        MESSAGE: ":github: [Triggered from a GitHub Action by Feelpp CFD Project] ${{ github.event.head_commit.message }}"
 
