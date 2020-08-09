@@ -23,19 +23,20 @@ The numerical results, obtained in this study, will be compared with those found
 stem:[L/D \in [1,6]] and a Reynolds number stem:[Re \in [50,300]].
 
 === Geometry setting
-The arrangement of the cylinders in the calculation area stem:[Omega] is shown in the figure below :
+The arrangement of the cylinders in the calculation area stem:[\Omega] is shown in the figure below :
 
 .Geometric setting for the 3 cylinder with equilaterial triangle arrangement
 image::{imagesprefix}3-cylinders-triangle/cylinders.png[]
 
-The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
+We provide here the basic geometry used in Gmsh to describe stem:[\Omega].
 
 .Geo file 
 [source,cpp,indent=0,small]
 ----
-include::example$cylinders/cylinders.geo[]
+include::example$3-cylinders-triangular-arrangements/cylinders.geo[]
 ----
 
+The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
 
 .Geometric data table
 [width="100%",options="header,footer"]
@@ -44,24 +45,24 @@ include::example$cylinders/cylinders.geo[]
 |stem:[D] | cylinder diameter  |  -  | stem:[m] 
 |stem:[L] | the center-to-center spacing of the cylinder  |  -  | stem:[m]
 |stem:[H] | side of the domain        | 200D | stem:[m] 
-|stem:[U] | Inlet velocity            |  -   | stem:[m/s]
+|stem:[U] | Inlet velocity            |  stem:[\frac{Re}{D}]   | stem:[m/s]
 |===
 
 === Physical setting
+The Physical parameters are:
 
 .Physical data table
 
 [width="100%",options="header,footer"]
 |===
 | Notation| Description           | Value     | Unit 
-|stem:[\rho]| Density             |    -      | stem:[Kg/m^3]
-|stem:[\mu] | Dynamic viscosity   |    -      | stem:[Pa.s] 
-|stem:[v]   | Kinematic viscosity |    -       | stem:[m^2/s]
+|stem:[\rho]| Density             |    1      | stem:[Kg/m^3]
+|stem:[\mu] | Dynamic viscosity   |    1      | stem:[Pa.s] 
 |===
 
 
 === Boundary conditions
-In this study 3 boundary conditions are imposed:
+In this study 3 boundary conditions are imposed: Inlet condition, Outlet condition and the Wall condition.
 
 * Inlet condition
 
@@ -76,13 +77,8 @@ v = 0
 .json configuration for the inlet boundary condition
 [source,json,indent=0]
 ----
-include::example$cylinders/cylinders.json[tag=inlet]
+include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=inlet]
 ----
-
-
-At the entrance the Poiseuille profile is represented by the graph below:
-
-
 
 * Wall conditions 
 
@@ -93,28 +89,39 @@ On the limits (3), i.e. on the upper and lower wall we have :
 \frac{\partial{u}}{\partial{x}}=0\\
 \frac{\partial{v}}{\partial{x}}=0
 ++++
+
 .json configuration for the wall boundary condition
 [source,json,indent=0]
 ----
-include::example$cylinders/cylinders.json[tag=walls]
+include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=walls]
 ----
+
 * Outlet condition
 
 On boundary (2) (i.e the exit boundary condition) a Neumann-type condition is imposed
 
-.json configuration for the outlet boundary condition
 [stem]
 ++++
 \frac{\partial{u}}{\partial{y}}=0\\
 v=0
 ++++
+
+.json configuration for the outlet boundary condition
 [source,json,indent=0]
 ----
-include::example$cylinders/cylinders.json[tag=outlet]
+include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=outlet]
 ----
+
 === Mesh
-we move on to meshing to generate fully structured uniform triangular
-cells, the figure below shows a part of the generated mesh:
+We move on to meshing to generate fully structured uniform triangular cells, the figure below shows a part of the generated mesh:
+
+.generated mesh
+
+image::{imagesprefix}3-cylinders-triangle/mesh2.png[]
+
+.represents a zoom-in view of the previous mesh
+ 
+image::{imagesprefix}3-cylinders-triangle/mesh1.png[]
 
 
 == Results
@@ -147,19 +154,13 @@ Copy command line to clipboard
 </button>
 ++++
 
-
-
-
-
-
-
 == Configuration files
 
 === cfg file
 
 [source,ini]
 ----
-include::example$cylinders/cylinders.cfg[]
+include::example$3-cylinders-triangular-arrangements/cylinders.cfg[]
 ----
 
 === json file
@@ -169,7 +170,7 @@ Here the full json configuration file
 .Json file
 [source,json,indent=0]
 ----
-include::example$cylinders/cylinders.json[]
+include::example$3-cylinders-triangular-arrangements/cylinders.json[]
 ----
 
 
