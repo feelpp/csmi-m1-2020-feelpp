@@ -1,6 +1,6 @@
 // Gmsh project created on Sat Aug  8 13:20:47 2020
-l_sur_w=1.5;
 w=2;
+l_sur_w=1.5;
 l=w*(l_sur_w);
 Lt=w/(5.26/100);
 Ld=29.5*w;
@@ -90,5 +90,3 @@ Physical Line("wall1") = {4};
 Physical Line("wall2") = {2};
 //+
 Physical Surface("omega") = {1};
-//+
-Physical Surface("omega") += {1};

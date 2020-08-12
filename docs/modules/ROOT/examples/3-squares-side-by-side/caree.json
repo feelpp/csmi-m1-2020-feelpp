@@ -1,0 +1,64 @@
+{
+    "Name": "three squares side by side",
+    "ShortName":"flow past",
+    "Models":
+    {
+         "equations": "Navier-Stokes"
+    },
+    "Materials":
+    {
+        "omega":
+        {
+            "rho":"1",
+            "mu":"1"
+        }
+    },
+    "BoundaryConditions":
+    {
+        "velocity":
+        {
+            // tag::inlet[]
+            "Dirichlet":
+            {
+                "inlet":
+                {
+                   "expr":"{1,0}"
+                }
+             },
+            // end::inlet[]
+
+            // tag::walls[]
+            "outlet":
+            {
+                 "wall1":
+                 {
+                     "expr":"0"
+                 },
+                 "wall2":
+                 {
+                     "expr":"0"
+                 }
+            }
+           // end::walls[]
+        },
+        "fluid":
+        {
+          // tag::outlet[]
+          "Neumann_scalar":
+           {
+               "outlet":
+                { 
+                    "expr":"0"
+                }
+           }
+          // end::outlet[]
+        }     
+    },
+    "PostProcess":
+    {   
+        "Exports":
+        {
+            "fields":["velocity","pressure"]
+        }
+    }
+}

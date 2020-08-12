@@ -21,7 +21,7 @@ Line(3) = {9, 4};
 //+
 Line(4) = {4, 2};
 //+
-Point(23) = {((2*L)-Sqrt((2*L)^2-4*(L_sur_D)^2))/2, 0, 0, h};//centre 1
+Point(23) = {-L, 0, 0, h};//centre 1
 //+
 Point(17) = {L, L_sur_D, 0, h};//centre 2
 //+
@@ -35,9 +35,9 @@ Point(26) = {L-D/2, -L_sur_D, 0, h};
 //+
 Point(27) = {L+D/2, -L_sur_D, 0, h};
 //+
-Point(28) = {((2*L)-Sqrt((2*L)^2-4*(L_sur_D)^2))/2-D/2, 0, 0, h};
+Point(28) = {-L-D/2, 0, 0, h};
 //+
-Point(29) = {((2*L)-Sqrt((2*L)^2-4*(L_sur_D)^2))/2+D/2, 0, 0, h};
+Point(29) = {-L+D/2, 0, 0, h};
 //+
 Circle(9) = {24, 17, 25};
 //+
@@ -70,3 +70,5 @@ Physical Line("outlet") = {1};
 Physical Line("wall1") = {4};
 //+
 Physical Line("wall2") = {2};
+//+
+Physical Surface("omega") = {1};

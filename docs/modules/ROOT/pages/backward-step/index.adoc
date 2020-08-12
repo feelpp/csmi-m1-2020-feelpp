@@ -34,12 +34,20 @@ Reynolds number values become turbulent and the average length of the recirculat
 until a constant saturation value is reached. In this case, we are only interested in two different
 Reynolds number values: `Re=389` and `Re=1095`.
 
-=== Geometry and data
+=== Geometry setting
 The computational domain stem:[\Omega] is a channel with a descending step as shown in the figure below :
 
 image::{imagesprefix}geo.png[]
 
-The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the tables below summarize these data.
+We provide here the basic geometry used in Gmsh to describe stem:[\Omega].
+
+.Geo file 
+[source,cpp,indent=0,small]
+----
+include::example$laminar_isothermal_backward_facing_step/stationnaire.geo[]
+----
+
+The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
 
 .Geometric data table
 
@@ -53,6 +61,9 @@ The Data provided on the whole stem:[\Omega] domain allows us to have conditions
 |stem:[U_{int}]|Inlet velocity               |   -    | stem:[m/s]
 |stem:[U_{ave}]| Average velocity            |   -    | stem:[m]/s
 |====================
+
+=== Physical setting
+The Physical parameters are:
 
 .Physical data table
 
@@ -85,6 +96,12 @@ such as stem:[y_1=y-S], and stem:[U_{ave}] are derived from the selected Reynold
 U_{ave} = \frac{vRe}{S} = \frac{\mu Re}{\rho S}
 ++++
 
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$laminar_isothermal_backward_facing_step/stationnaire.json[tag=inlet]
+----
+
 At the entrance the profile of Poiseuille is represented by the graphe below:
 
 - For `Re=389`:
@@ -103,10 +120,22 @@ On the limits (2), i.e. on the upper and lower wall we have :
 u=0
 ++++
 
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$laminar_isothermal_backward_facing_step/stationnaire.json[tag=walls]
+----
+
 * Outlet condition
 
 On boundary (3) the exit boundary condition is [bleu]#_free_#, which means that no
 constraint is imposed on the exit boundary.
+
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$laminar_isothermal_backward_facing_step/stationnaire.json[tag=outlet]
+----
 
 === Conformal blocks division
 
@@ -165,109 +194,23 @@ In this part the problem is dealt with in a stationary frame.
 NOTE: The solution does not depend on the
 time, more precisely the flow profile is to long at the points where the flow variation is not visible.
 
-==== Data files 
+==== Configuration files
 
-===== `JSON-file`:
+===== json file
 
-[source,json]
-.laminar.json
+[source,ini]
 ----
-{
-    "Name": "Laminar, Isothermal Backward Facing Step Benchmark",
-    "ShortName":"ecoulementstationnaire",
-    "Models":
-    {
-         "equations": "Navier-Stokes"
-    },
-    "Parameters":
-    {
-        "h":"5.2e-3",       
-        "s":"4.9e-3",       
-        "uave":"0.54433"          <1>
-    },
-    "Materials":
-    {
-        "omega":
-        {
-            "rho":"1.23",
-            "mu":"1.79e-5"
-        }
-    }, 
-    "BoundaryConditions":
-    {
-        "velocity":
-        {
-            "Dirichlet":
-            {
-                "inlet":
-                {
-                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
-                },
-                "wall1":
-                {
-                    "expr":"{0,0}"
-                },
-                "wall2":
-                {
-                    "expr":"{0,0}"
-                },
-                "wall3":
-                {
-                    "expr":"{0,0}"
-                }
-            }
-        },
-        "fluid":
-        {
-            "outlet":
-            {
-                "outlet":
-                {
-                    "expr":"0" 
-                }
-            }
-        }
-    },
-    "PostProcess":
-    {   
-        "Exports":
-        {
-            "fields":["velocity"]
-        }
-
-    }
-}
+include::example$laminar_isothermal_backward_facing_step/stationnaire.json[]
 ----
 
-<1> `uave` is the average velocity for `Re=389`.
 
-===== `CFG-file`:
+===== cfg file
 
-[source,cfg]
-.laminar.cfg
+[source,ini]
 ----
-directory=resulats/stationnaire389/P1
-
-[case]
-discretization= P2P1G1
-dimension=2
-
-[fluid]
-filename=$cfgdir/laminar.json
-mesh.filename=$cfgdir/laminar.geo
-gmsh.hsize=0.0005
-
-solver= Newton 
-linearsystem-cst-update=false
-jacobian-linear-update=false
-
-snes-monitor=true
-pc-type= gams
-snes-rtol=1e-10
-
-[ts]
-steady=true
+include::example$laminar_isothermal_backward_facing_step/stationnaire.cfg[]
 ----
+
 
 ==== Flow visualization 
 
@@ -454,112 +397,21 @@ frame.
  
 NOTE: In this case the solution will depend on time.
 
-==== Data files
- 
-===== `JSON-file`:
+==== Configuration files
 
-[source,json]
-.laminar.json
+===== json file
+
+[source,ini]
 ----
-{
-    "Name": "Laminar, Isothermal Backward Facing Step Benchmark",
-    "ShortName":"ecoulementstationnaire",
-    "Models":
-    {
-        "equations":"Navier-Stokes"
-    },
-    "Parameters":
-    {
-        "h":"5.2e-3",
-        "s":"4.9e-3",
-        "uave":"1.5322"        <1>
-    },
-    "Materials":
-    {
-        "omega":
-        {
-            "rho":"1.23",
-            "mu":"1.79e-5"
-        }
-    },
-    "BoundaryConditions":
-    {
-        "velocity":
-        {
-            "Dirichlet":
-            {
-                "inlet":
-                {
-                    "expr":"{6*uave*((y-s)/h)*(1-((y-s)/h)),0}:uave:s:h:y"
-                },
-                "wall1":
-                {
-                    "expr":"{0,0}"
-                },
-                "wall2":
-                {
-                    "expr":"{0,0}"
-                },
-                "wall3":
-                {
-                    "expr":"{0,0}"
-                }
-            }
-
-        },
-        "fluid":
-        {
-            "outlet":
-            {
-                "outlet":
-                {
-                    "expr":"0" 
-                }
-            }
-        }
-    },
-    "PostProcess":
-    {
-        "Exports":
-        {
-            "fields":["velocity"]
-        }
-    }
-}
+include::example$laminar_isothermal_backward_facing_step/instationnaire.json[]
 ----
 
-<1> `uave` is the average velocity for `Re=1095`.
 
-===== `CFG-file`:
+===== cfg file
 
-[source,cfg]
-.laminar.cfg
+[source,ini]
 ----
-directory=resulats/instationnaire1095/P1
-
-[case]
-discretization= P2P1G1
-dimension=2
-
-[fluid]
-filename=$cfgdir/laminar.json
-mesh.filename=$cfgdir/lami.geo
-gmsh.hsize=0.0005
-
-solver= Newton
-linearsystem-cst-update=false
-jacobian-linear-update=false
-
-ts.steady=true
-snes-monitor=true
-pc-type= gams
-
-[fluid.bdf]
-order=2
-
-[ts]
-time-step=0.1
-time-final=10
+include::example$laminar_isothermal_backward_facing_step/instationnaire.cfg[]
 ----
 
 ==== Flow visualization 

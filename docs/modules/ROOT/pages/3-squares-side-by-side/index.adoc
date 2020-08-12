@@ -1,6 +1,151 @@
-= Flow around three ssquares side by side
-
+= Flow around three squares side by side
+:page-plotly: true
+:icons: font
+:stem: latexmath
+:feelpp: Feel++
+:nofooter:
+:toc: left
+:bibtex-file: ibat.bib
+:imagesprefix:
+ifdef::env-github,env-browser,env-vscode[:imagesprefix: ../images/]
 NOTE: this benchmark is based on <<zheng-2019>>.
+
+== Presentation of the test case
+
+=== Presentation
+This study is based on the flow of a fluid in front of three side-by-side square cylinders.
+The cylinders are arranged side by side, the center of the central cylinder represents the origin of the coordinate system, one of the two other cylinders is placed below the central cylinder and the other above.
+
+In this test case, we are particularly interested in the effect of the spacing ratio L/W on the flow, where L is the center-to-center spacing of the cylinder and W is the cylinder side width.
+
+The numerical results obtained in this study will be compared with those found in the literature, for different gaps 
+stem:[L/W < 1.4] and stem:[L/W \in [1.4,9]] with a Reynolds number equal to stem:[Re=150].
+
+=== Geometry setting
+The arrangement of the cylinders in the calculation area stem:[\Omega] is shown in the figure below :
+
+.The geometric setting for the 3 cylinder with central cylinder represents the origin of the coordinate system
+image::{imagesprefix}3-squares-side-by-side/geo_caree.png[]
+
+We provide here the basic geometry used in Gmsh to describe stem:[\Omega].
+
+.Geo file 
+[source,cpp,indent=0,small]
+----
+include::example$3-squares-side-by-side/caree.geo[]
+----
+
+The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
+
+.Geometric data table
+
+[width="100%",options="header,footer"]
+|===
+| Notation  | Description  | Value  | Unit 
+|stem:[W]   | cylinder width                           |  -  | stem:[m] 
+|stem:[L]   | the center-to-center spacing of the cylinder  |  -  | stem:[m]
+|stem:[L_t] | side of the domain                            | stem:[W\frac{1}{5.26\%}] | stem:[m] 
+|stem:[L_u] | upstream boundary separations from the coordinate origin|  stem:[13.5W]   | stem:[m]
+|stem:[L_d] | downstream boundary separations from the coordinate origin | stem:[29.5W]| stem:[m] 
+|stem:[U]   | Inlet velocity | 1 | stem:[m/s]
+|===
+
+=== Physical setting
+The Physical parameters are:
+
+.Physical data table
+
+[width="100%",options="header,footer"]
+|===
+| Notation| Description           | Value     | Unit 
+|stem:[\rho]| Density             |    1      | stem:[Kg/m^3]
+|stem:[\mu] | Dynamic viscosity   |    1      | stem:[Pa.s] 
+|===
+
+=== Boundary conditions
+In this study 3 boundary conditions are imposed: Inlet condition, Outlet condition and the Wall condition.
+
+* Inlet condition
+
+On boundary (1) a Dirichlet-type condition is imposed and a [bleu]#_Poiseuille_# [bleu]#_profile_# is placed as an entry condition, it's defined by:
+
+[stem]
+++++
+u = U \\
+v = 0
+++++
+
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$3-squares-side-by-side/caree.json[tag=inlet]
+----
+
+* Wall conditions 
+
+On the limits (3), i.e. on the upper and lower wall we have :
+
+[stem]
+++++
+\frac{\partial{u}}{\partial{y}}=0\\
+\frac{\partial{p}}{\partial{y}}=0\\
+v=0
+
+++++
+
+.json configuration for the wall boundary condition
+[source,json,indent=0]
+----
+include::example$3-squares-side-by-side/caree.json[tag=walls]
+----
+
+* Outlet condition
+
+On boundary (2) (i.e the exit boundary condition) a Neumann-type condition is imposed
+
+[stem]
+++++
+\frac{\partial{u}}{\partial{x}}=0\\
+\frac{\partial{v}}{\partial{x}}=0\\
+\frac{\partial{p}}{\partial{x}}=0
+++++
+
+.json configuration for the outlet boundary condition
+[source,json,indent=0]
+----
+include::example$3-squares-side-by-side/caree.json[tag=outlet]
+----
+
+=== Mesh
+We move on to meshing to generate fully structured uniform triangular cells, the figure below shows a part of the generated mesh:
+
+.generated mesh for case stem:[L/W = 1.5]
+
+image::{imagesprefix}3-squares-side-by-side/mesh1.png[]
+
+.represents a zoom-in view of the previous mesh
+ 
+image::{imagesprefix}3-squares-side-by-side/mesh2.png[]
+
+== Configuration files
+
+=== cfg file
+
+[source,ini]
+----
+include::example$3-squares-side-by-side/caree.cfg[]
+----
+
+=== json file
+
+Here the full json configuration file
+
+.Json file
+[source,json,indent=0]
+----
+include::example$3-squares-side-by-side/caree.json[]
+----
+
 
 [bibliography]
 == Bibliography 

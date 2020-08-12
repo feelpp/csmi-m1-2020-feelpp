@@ -19,13 +19,13 @@ The cylinders are arranged in an equilateral rectangle, one of the cylinders is 
 
 In this test case, we are particularly interested in the effect of the spacing ratio L/D and the number of Reynolds Re on the flow, where L is the center-to-center spacing of the cylinder and D is the cylinder diameter.
 
-The numerical results, obtained in this study, will be compared with those found in the literature, for different gaps 
+The numerical results obtained in this study, will be compared with those found in the literature, for different gaps 
 stem:[L/D \in [1,6]] and a Reynolds number stem:[Re \in [50,300]].
 
 === Geometry setting
 The arrangement of the cylinders in the calculation area stem:[\Omega] is shown in the figure below :
 
-.Geometric setting for the 3 cylinder with equilaterial triangle arrangement
+.The geometric setting for the 3 cylinder with equilaterial triangle arrangement
 image::{imagesprefix}3-cylinders-triangle/cylinders.png[]
 
 We provide here the basic geometry used in Gmsh to describe stem:[\Omega].
@@ -39,6 +39,7 @@ include::example$3-cylinders-triangular-arrangements/cylinders.geo[]
 The Data provided on the whole stem:[\Omega] domain allows us to have conditions at the specified limits, the table below summarize these data.
 
 .Geometric data table
+
 [width="100%",options="header,footer"]
 |===
 | Notation| Description  | Value  | Unit 
@@ -115,7 +116,7 @@ include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=outlet]
 === Mesh
 We move on to meshing to generate fully structured uniform triangular cells, the figure below shows a part of the generated mesh:
 
-.generated mesh
+.generated mesh for case stem:[L/D = 1.1]
 
 image::{imagesprefix}3-cylinders-triangle/mesh2.png[]
 
@@ -123,6 +124,24 @@ image::{imagesprefix}3-cylinders-triangle/mesh2.png[]
  
 image::{imagesprefix}3-cylinders-triangle/mesh1.png[]
 
+== Configuration files
+
+=== cfg file
+
+[source,ini]
+----
+include::example$3-cylinders-triangular-arrangements/cylinders.cfg[]
+----
+
+=== json file
+
+Here the full json configuration file
+
+.Json file
+[source,json,indent=0]
+----
+include::example$3-cylinders-triangular-arrangements/cylinders.json[]
+----
 
 == Results
 
@@ -132,7 +151,7 @@ The command line to run this cases is
 
 [source,sh]
 ----
-mpirun -np 4 feelpp_toolbox_fluid--config-file cylindre.cfg--fluid.snes-monitor=1--fluid.gmsh.hsize=10
+mpirun -np 4 feelpp_toolbox_fluid--config-file cylindre.cfg--fluid.snes-monitor=1--fluid.gmsh.hsize=8
 ----
 
 ++++
@@ -154,24 +173,7 @@ Copy command line to clipboard
 </button>
 ++++
 
-== Configuration files
 
-=== cfg file
-
-[source,ini]
-----
-include::example$3-cylinders-triangular-arrangements/cylinders.cfg[]
-----
-
-=== json file
-
-Here the full json configuration file
-
-.Json file
-[source,json,indent=0]
-----
-include::example$3-cylinders-triangular-arrangements/cylinders.json[]
-----
 
 
 
