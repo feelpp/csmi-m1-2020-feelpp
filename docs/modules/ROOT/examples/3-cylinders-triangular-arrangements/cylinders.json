@@ -25,45 +25,63 @@
             "Dirichlet":
             {
                 // tag::inlet[]
-                "inlet":
+                "Inlet":
                 {
                    "expr":"{Re/D,0}:Re:D"
-                }
+                },
                 // end::inlet[]
-
+                // tag::load[]
+                "load1":
+                {
+                  "expr":"{0,0}"
+                },
+                "load2":
+                {
+                  "expr":"{0,0}"
+                },
+                "load3":
+                {
+                  "expr":"{0,0}"
+                }
+               // end::load[]
              },
             "outlet":
             {
              // tag::walls[]
-                 "wall1":
+                 "Wall1":
                  {
                      "expr":"0"
                  },
-                 "wall2":
+                 "Wall2":
                  {
                      "expr":"0"
                  }
              // end::walls[]
-            }
-        },
-        "fluid":
-        {
-          // tag::outlet[]
+            },
+          
           "Neumann_scalar":
            {
-               "outlet":
+          // tag::outlet[]
+               "Outlet":
                 { 
                     "expr":"0"
                 }
            }
           // end::outlet[]
-        }     
-    },
-    "PostProcess":
+
+        }
+     "PostProcess":
     {   
+       // tag::process[]
         "Exports":
         {
-            "fields":["velocity"]
+            "fields":["velocity","vorticity","pressure","pid"]
+        },
+        "Measures":
+        {
+            "Forces":["load1","load2","load3"]
         }
+        // end::process[]
     }
+}
 }

@@ -1,6 +1,8 @@
 = Root Mean Square Error(RMSE)
 :stem: latexmath
 
+It is defined by the following formula:
+
 [stem]
 ++++
 RMSE=\sqrt{\frac{\sum_{i=0}^n (\widehat{y_i}-y_i)^2}{n}}

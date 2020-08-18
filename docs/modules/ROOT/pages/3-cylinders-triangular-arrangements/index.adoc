@@ -43,8 +43,8 @@ The Data provided on the whole stem:[\Omega] domain allows us to have conditions
 [width="100%",options="header,footer"]
 |===
 | Notation| Description  | Value  | Unit 
-|stem:[D] | cylinder diameter  |  -  | stem:[m] 
-|stem:[L] | the center-to-center spacing of the cylinder  |  -  | stem:[m]
+|stem:[D] | cylinder diameter  |    | stem:[m] 
+|stem:[L] | the center-to-center spacing of the cylinder  |    | stem:[m]
 |stem:[H] | side of the domain        | 200D | stem:[m] 
 |stem:[U] | Inlet velocity            |  stem:[\frac{Re}{D}]   | stem:[m/s]
 |===
@@ -81,6 +81,20 @@ v = 0
 include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=inlet]
 ----
 
+The Dirichlet conditions are also imposed on the edges of the cylinders such as:
+[stem]
+++++
+U=0\\
+v = 0
+++++
+
+.json configuration for the inlet boundary condition
+[source,json,indent=0]
+----
+include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=load]
+----
+
+
 * Wall conditions 
 
 On the limits (3), i.e. on the upper and lower wall we have :
@@ -111,6 +125,16 @@ v=0
 [source,json,indent=0]
 ----
 include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=outlet]
+----
+
+*  Exports for vizualisation
+
+The fields exported in this study are:
+
+.json configuration for the fields exported
+[source,json,indent=0] 
+----
+include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=process]
 ----
 
 === Mesh
@@ -151,7 +175,7 @@ The command line to run this cases is
 
 [source,sh]
 ----
-mpirun -np 4 feelpp_toolbox_fluid--config-file cylindre.cfg--fluid.snes-monitor=1--fluid.gmsh.hsize=8
+mpirun -np 4 feelpp_toolbox_fluid --config-file cylindre.cfg --fluid.snes-monitor=1 --fluid.gmsh.hsize=5
 ----
 
 ++++
@@ -173,9 +197,48 @@ Copy command line to clipboard
 </button>
 ++++
 
+NOTE: In these cases, the solution will depend on time, so the solutions presented below are obtained at the end of the simulation.
+
+===  Results for stem:[1.0 < L/D \leq 1.4]
+
+* Velocity
+
+* Pressure
+
+* Vorticity 
 
 
+===  Results for stem:[1.4 < L/D \leq 1.9]
 
+* Velocity
+
+* Pressure
+
+* Vorticity 
+
+===  Results for stem:[1.9 < L/D \leq 2.5]
+
+* Velocity
+
+* Pressure
+
+* Vorticity 
+
+===  Results for stem:[2.5 < L/D \leq 2.8 ] and stem:[3.4 < L/D \leq 4.1]
+
+* Velocity
+
+* Pressure
+
+* Vorticity 
+
+===  Results for stem:[2.8 < L/D \leq 3.4] and stem:[4.1 < L/D \leq 4.5]
+
+* Velocity
+
+* Pressure
+
+* Vorticity 
 
 
 

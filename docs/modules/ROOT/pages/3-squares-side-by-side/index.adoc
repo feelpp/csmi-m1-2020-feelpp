@@ -90,7 +90,6 @@ On the limits (3), i.e. on the upper and lower wall we have :
 \frac{\partial{u}}{\partial{y}}=0\\
 \frac{\partial{p}}{\partial{y}}=0\\
 v=0
-
 ++++
 
 .json configuration for the wall boundary condition
@@ -119,7 +118,7 @@ include::example$3-squares-side-by-side/caree.json[tag=outlet]
 === Mesh
 We move on to meshing to generate fully structured uniform triangular cells, the figure below shows a part of the generated mesh:
 
-.generated mesh for case stem:[L/W = 1.5]
+.Generated mesh for case stem:[L/W = 1.5]
 
 image::{imagesprefix}3-squares-side-by-side/mesh1.png[]
 
