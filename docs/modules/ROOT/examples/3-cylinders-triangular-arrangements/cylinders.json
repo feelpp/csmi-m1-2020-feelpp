@@ -13,7 +13,7 @@
             "mu":"1"
         }
     },
-    "Parametres":
+    "Parameters":
     {
       "Re":"100",
       "D":"1.5"
@@ -27,50 +27,44 @@
                 // tag::inlet[]
                 "Inlet":
                 {
-                   "expr":"{Re/D,0}:Re:D"
+                    "expr":"{Re/D,0}:Re:D"
                 },
                 // end::inlet[]
                 // tag::load[]
-                "load1":
+                "loads":
                 {
-                  "expr":"{0,0}"
-                },
-                "load2":
-                {
-                  "expr":"{0,0}"
-                },
-                "load3":
-                {
-                  "expr":"{0,0}"
+                    "expr":"{0,0}",
+		    "markers":["load1","load2","load3"]
                 }
-               // end::load[]
-             },
-            "outlet":
+		// end::load[]
+            }
+            // "Neumann_scalar":
+            // {
+	    // 	// tag::outlet[]
+	    // 	"Outlet":
+            //     { 
+            //         "expr":"0"
+            //     }
+            // }
+            // // end::outlet[]
+        },
+	"velocity_y":
+        {
+            "Dirichlet":
             {
-             // tag::walls[]
-                 "Wall1":
-                 {
-                     "expr":"0"
-                 },
-                 "Wall2":
-                 {
-                     "expr":"0"
-                 }
-             // end::walls[]
-            },
-          
-          "Neumann_scalar":
-           {
-          // tag::outlet[]
-               "Outlet":
-                { 
-                    "expr":"0"
-                }
-           }
-          // end::outlet[]
-
-        }
-     "PostProcess":
+		"walls":
+		{
+		    "expr":"0",
+		    "markers":["Wall1","Wall2"]
+		}
+	    }
+	},
+	"fluid":
+	{
+	    "outlet":{ "Outlet":{} }
+	}
+    },
+    "PostProcess":
     {   
        // tag::process[]
         "Exports":
@@ -83,5 +77,4 @@
         }
         // end::process[]
     }
-}
 }
