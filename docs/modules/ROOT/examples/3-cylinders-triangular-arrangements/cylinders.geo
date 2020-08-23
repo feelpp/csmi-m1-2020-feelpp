@@ -3,7 +3,7 @@ D=1.5;
 L_sur_D=1.2;
 L=D*L_sur_D;
 H=200*D;
-h=8;
+h=6;
 Ld=100*D;
 Lu=-100*D;
 // grand caree

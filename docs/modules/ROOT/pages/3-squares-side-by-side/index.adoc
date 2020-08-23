@@ -67,7 +67,7 @@ In this study 3 boundary conditions are imposed: Inlet condition, Outlet conditi
 
 * Inlet condition
 
-On boundary (1) a Dirichlet-type condition is imposed and a [bleu]#_Poiseuille_# [bleu]#_profile_# is placed as an entry condition, it's defined by:
+On boundary (1) a Dirichlet-type condition is imposed and free-stream flow velocity is placed as an entry condition, it's defined by:
 
 [stem]
 ++++

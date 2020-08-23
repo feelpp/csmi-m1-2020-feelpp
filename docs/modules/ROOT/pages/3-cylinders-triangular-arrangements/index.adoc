@@ -67,7 +67,7 @@ In this study 3 boundary conditions are imposed: Inlet condition, Outlet conditi
 
 * Inlet condition
 
-On boundary (1) a Dirichlet-type condition is imposed and a [bleu]#_Poiseuille_# [bleu]#_profile_# is placed as an entry condition, it's defined by:
+On boundary (1) a Dirichlet-type condition is imposed and a free-stream flow velocity is placed as an entry condition, it's defined by:
 
 [stem]
 ++++
@@ -175,7 +175,7 @@ The command line to run this cases is
 
 [source,sh]
 ----
-mpirun -np 4 feelpp_toolbox_fluid --config-file cylindre.cfg --fluid.snes-monitor=1 --fluid.gmsh.hsize=5
+mpirun -np 24 feelpp_toolbox_fluid --config-file cylindre.cfg --fluid.snes-monitor=1 --fluid.gmsh.hsize=8
 ----
 
 ++++
@@ -201,46 +201,647 @@ NOTE: In these cases, the solution will depend on time, so the solutions present
 
 ===  Results for stem:[1.0 < L/D \leq 1.4]
 
-* Velocity
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 1.1]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_1.1.png[]
+
+* Time-averaged streamwise velocity
+
+.Velocity magnitude for case stem:[L/D = 1.1]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_div_U_1.1.png[]
 
 * Pressure
 
-* Vorticity 
+image::{imagesprefix}3-cylinders-triangle/pression_1.1.png[]
+
+* Vorticity contours
+
+image::{imagesprefix}3-cylinders-triangle/vorticity_1.1.png[]
 
 
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 1.1]
+
+++++
+<div id="plotly_simulation"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f41678cb0e95704a75f86fc/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simulation,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simulation2"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f41678cb0e95704a75f86fc/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simulation2,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation2);
+    }
+  );
+</script>
+++++
 ===  Results for stem:[1.4 < L/D \leq 1.9]
 
-* Velocity
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 1.5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_1.5.png[]
+
+* Time-averaged streamwise velocity
+
+.Time-averaged streamwise velocity for case stem:[L/D = 1.5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_div_U_1.5.png[]
 
 * Pressure
 
-* Vorticity 
+.Pressure for case stem:[L/D = 1.5]
+
+image::{imagesprefix}3-cylinders-triangle/pression_1.5.png[]
+
+* Vorticity contours 
+
+.Vorticity contours for case stem:[L/D = 1.5]
+
+image::{imagesprefix}3-cylinders-triangle/vorticity_1.5.png[]
+
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 1.5]
+
+++++
+<div id="plotly_simulation3"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167aeb0e95704a75f86ff/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simulation3,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation3);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simulation4"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167aeb0e95704a75f86ff/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simulation4,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation4);
+    }
+  );
+</script>
+++++
 
 ===  Results for stem:[1.9 < L/D \leq 2.5]
 
-* Velocity
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 2.2]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_2.2.png[]
+
+* Time-averaged streamwise velocity
+
+.Time-averaged streamwise velocity for case stem:[L/D = 2.2]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_div_U_2.2.png[]
 
 * Pressure
 
-* Vorticity 
+.Pressure for case stem:[L/D = 2.2]
+
+image::{imagesprefix}3-cylinders-triangle/pression_2.2.png[]
+
+* Vorticity contours 
+
+.Vorticity contours for case stem:[L/D = 2.2]
+
+image::{imagesprefix}3-cylinders-triangle/vorticity_2.2.png[]
+
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 2.2]
+
+++++
+<div id="plotly_simulationn"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f422a67b0e95704a75f8708/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simulationn,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulationn);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simulationnn"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f422a67b0e95704a75f8708/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simulationnn,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulationn);
+    }
+  );
+</script>
+++++
 
 ===  Results for stem:[2.5 < L/D \leq 2.8 ] and stem:[3.4 < L/D \leq 4.1]
 
-* Velocity
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 2.6] and stem:[L/D = 4.1]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_2.6.png[]
+
+* Time-averaged streamwise velocity
+
+.Time-averaged streamwise velocity for case stem:[L/D = 2.6] and stem:[L/D = 4.1]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_dic_U_2.6.png[]
 
 * Pressure
 
-* Vorticity 
+.Pressure for case stem:[L/D = 2.6] and stem:[L/D = 4.1]
+
+image::{imagesprefix}3-cylinders-triangle/pression_2.6.png[]
+
+* Vorticity contours 
+
+.Vorticity contours for case stem:[L/D = 2.6] and stem:[L/D = 4.1]
+
+image::{imagesprefix}3-cylinders-triangle/vorticty_2.6.png[]
+
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 2.6] and stem:[4.1] wich are the same.
+
+++++
+<div id="plotly_simul"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f42416cb0e95704a75f870e/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simul,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simul);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simu"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f42416cb0e95704a75f870e/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simu,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simu);
+    }
+  );
+</script>
+++++ 
 
 ===  Results for stem:[2.8 < L/D \leq 3.4] and stem:[4.1 < L/D \leq 4.5]
 
-* Velocity
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 3.2] and stem:[L/D = 4.5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_3.2.png[]
+
+* Time-averaged streamwise velocity
+
+.Time-averaged streamwise velocity for case stem:[L/D = 3.2] and stem:[L/D = 4.5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_div_U_3.2.png[]
 
 * Pressure
 
-* Vorticity 
+.Pressure for case stem:[L/D = 3.2] and stem:[L/D = 4.5]
 
+image::{imagesprefix}3-cylinders-triangle/pression_3.2.png[]
 
+* Vorticity contours 
+
+.Vorticity contours for case stem:[L/D = 3.2] and stem:[L/D = 4.5]
+
+image::{imagesprefix}3-cylinders-triangle/vorticity_3.2.png[]
+
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 3.2] and stem:[4.5] wich are the same.
+
+++++
+<div id="plotly_simulation5"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167bcb0e95704a75f8702/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simulation5,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation5);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simulation6"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167bcb0e95704a75f8702/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simulation6,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation6);
+    }
+  );
+</script>
+++++
+
+===  Results for stem:[4.5 < L/D \leq 6]
+
+* Velocity magnitude
+
+.Velocity magnitude for case stem:[L/D = 4.8] and stem:[L/D = 5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_magnitude_4.8.png[]
+
+* Time-averaged streamwise velocity
+
+.Time-averaged streamwise velocity for case stem:[L/D = 4.8] and stem:[L/D = 5]
+
+image::{imagesprefix}3-cylinders-triangle/velocity_u_moy_div_U_4.8.png[]
+
+* Pressure
+
+.Pressure for case stem:[L/D = 4.8] and stem:[L/D = 5]
+
+image::{imagesprefix}3-cylinders-triangle/pression_4.8.png[]
+
+* Vorticity contours 
+
+.Vorticity contours for case stem:[L/D = 4.8] and stem:[L/D = 5]
+
+image::{imagesprefix}3-cylinders-triangle/vorticity_4.8.png[]
+
+=== Time histories of the simulated drag and lift coefficients:
+
+the graphs below show as the time histories of the drag and lift coefficients when stem:[L/D = 4.8] and stem:[5.0] wich are the same.
+
+++++
+<div id="plotly_simulation7"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167ebb0e95704a75f8705/download",
+   function(err,rows){
+      var data = [{
+        name: 'drag cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'drag cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'drag cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_drag3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the drag coefficients'
+      };
+      Plotly.plot(plotly_simulation7,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation7);
+    }
+  );
+</script>
+++++
+
+++++
+<div id="plotly_simulation8"></div>
+<script type="text/javascript">
+  Plotly.d3.csv("https://girder.math.unistra.fr/api/v1/item/5f4167ebb0e95704a75f8705/download",
+   function(err,rows){
+      var data = [{
+        name: 'lift cyl1',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift1'),
+        showlegend: true,
+        line: { color: '#FF99BB' }
+      },{
+        name: 'lift cyl2',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift2'),
+        showlegend: true,
+        line: { color: '#CC3333' }
+      },{
+        name: 'lift cyl3',
+        type: 'scatter',
+        x: feelpp_unpack(rows,'time'),
+        y: feelpp_unpack(rows,'coef_lift3'),
+        showlegend: true,
+        line: { color: '#BB99FF' }
+    }];
+
+      var layout = {
+        title: 'time histories of the lift coefficients'
+      };
+      Plotly.plot(plotly_simulation8,data,layout,{showLink:false});
+
+      feelpp_add_redimensionable_plot(plotly_simulation8);
+    }
+  );
+</script>
+++++
 
 [bibliography]
 == Bibliography 

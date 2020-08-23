@@ -36,31 +36,32 @@ Line(4) = {2, 4};
 //Line(5) = {7, 9};
 //+
 //Line(6) = {6, 8};
+h_size=h/10;
 //caree milieu
-Point(10) = {w/2,w/2, 0, h};
-Point(11) = {-w/2,w/2, 0, h};
-Point(12) = {w/2,-w/2, 0, h};
-Point(13) = {-w/2,-w/2, 0, h};
+Point(10) = {w/2,w/2, 0, h_size};
+Point(11) = {-w/2,w/2, 0, h_size};
+Point(12) = {w/2,-w/2, 0, h_size};
+Point(13) = {-w/2,-w/2, 0, h_size};
 Line(7) = {10, 11};
 Line(8) = {11, 13};
 Line(9) = {13, 12};
 Line(10) = {12, 10};
 //caree haut
-Point(14) = {0,l, 0, h};
-Point(15) = {w/2,l+w/2, 0, h};
-Point(16) = {-w/2,l+w/2, 0, h};
-Point(17) = {w/2,l-w/2, 0, h};
-Point(18) = {-w/2,l-w/2, 0, h};
+Point(14) = {0,l, 0, h_size};
+Point(15) = {w/2,l+w/2, 0, h_size};
+Point(16) = {-w/2,l+w/2, 0, h_size};
+Point(17) = {w/2,l-w/2, 0, h_size};
+Point(18) = {-w/2,l-w/2, 0, h_size};
 Line(11) = {17, 18};
 Line(12) = {18, 16};
 Line(13) = {16, 15};
 Line(14) = {15, 17};
 //caree bas
-Point(19) = {0,-l, 0, h};
-Point(20) = {w/2,-l+w/2, 0, h};
-Point(21) = {-w/2,-l+w/2, 0, h};
-Point(22) = {w/2,-l-w/2, 0, h};
-Point(23) = {-w/2,-l-w/2, 0, h};
+Point(19) = {0,-l, 0, h_size};
+Point(20) = {w/2,-l+w/2, 0, h_size};
+Point(21) = {-w/2,-l+w/2, 0, h_size};
+Point(22) = {w/2,-l-w/2, 0, h_size};
+Point(23) = {-w/2,-l-w/2, 0, h_size};
 
 //+
 Line(15) = {20, 21};

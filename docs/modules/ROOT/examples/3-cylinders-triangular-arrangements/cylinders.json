@@ -30,11 +30,36 @@
                     "expr":"{Re/D,0}:Re:D"
                 },
                 // end::inlet[]
+
                 // tag::load[]
                 "loads":
                 {
                     "expr":"{0,0}",
 		    "markers":["load1","load2","load3"]
+<<<<<<< HEAD
+             }
+		        // end::load[]
+            }
+        },
+        "velocity_y":
+        {
+                "Dirichlet":
+                {
+            // tag::walls[]        
+            "walls":
+            {
+                "expr":"0",
+                "markers":["Wall1","Wall2"]
+            }
+            // end::walls[]
+                }
+        },
+	"fluid":
+	{
+        // tag::outlet[]
+        "outlet":{ "Outlet":{} }
+        // end::outlet[]
+=======
                 }
 		// end::load[]
             }
@@ -62,6 +87,7 @@
 	"fluid":
 	{
 	    "outlet":{ "Outlet":{} }
+>>>>>>> 09f53c318c15c500518cc13e3d57f909c3380a59
 	}
     },
     "PostProcess":
