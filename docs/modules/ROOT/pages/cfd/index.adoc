@@ -200,7 +200,7 @@ we obtain the differential form,which is the continuity equation:
 --
 [stem]
 ++++
-\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho v)=0
+\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho \vec v)=0
 ++++
 --
 

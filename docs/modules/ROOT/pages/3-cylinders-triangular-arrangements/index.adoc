@@ -61,7 +61,6 @@ The Physical parameters are:
 |stem:[\mu] | Dynamic viscosity   |    1      | stem:[Pa.s] 
 |===
 
-
 === Boundary conditions
 In this study 3 boundary conditions are imposed: Inlet condition, Outlet condition and the Wall condition.
 
@@ -138,7 +137,7 @@ include::example$3-cylinders-triangular-arrangements/cylinders.json[tag=process]
 ----
 
 === Mesh
-We move on to meshing to generate fully structured uniform triangular cells, the figure below shows a part of the generated mesh:
+The mesh has been developed with tighter meshes close to the cylinder and downstream of the cylinder in order to be able to finely detect the flow value fields, the figure below shows a part of the generated mesh:
 
 .generated mesh for case stem:[L/D = 1.1]
 
@@ -147,6 +146,24 @@ image::{imagesprefix}3-cylinders-triangle/mesh2.png[]
 .represents a zoom-in view of the previous mesh
  
 image::{imagesprefix}3-cylinders-triangle/mesh1.png[]
+
+The coefficients of lift stem:[C_l] ,and drag stem:[C_d] ,will be used to qualify the mesh used. They are defined as follows:
+
+.Drag coefficients
+
+[stem]
+++++
+C_d=\frac{2F_{d}}{\rho U^{2} D}
+++++
+
+.Lift coefficients
+
+[stem]
+++++
+C_f=\frac{2F_{f}}{\rho U^{2} D}
+++++
+
+With stem:[F_l] and stem:[F_d] the forces per unit length that apply to the cylinder.
 
 == Configuration files
 
@@ -198,6 +215,8 @@ Copy command line to clipboard
 ++++
 
 NOTE: In these cases, the solution will depend on time, so the solutions presented below are obtained at the end of the simulation.
+
+NOTE:  Reynolds number for all simulations made is equal to 150
 
 ===  Results for stem:[1.0 < L/D \leq 1.4]
 
@@ -303,6 +322,10 @@ the graphs below show as the time histories of the drag and lift coefficients wh
   );
 </script>
 ++++
+ 
+icon:comment[] 
+
+
 ===  Results for stem:[1.4 < L/D \leq 1.9]
 
 * Velocity magnitude
@@ -842,6 +865,21 @@ the graphs below show as the time histories of the drag and lift coefficients wh
   );
 </script>
 ++++
+
+== Comments
+
+* The velocity contours give a very interesting picture of the flow condition for each case.
+Analysis of the figures indicates that for low L/D values the cylinders act as a single bluff body  and the gap shear layers are short in the direction of the current and do not roll up appreciably.
+
+
+
+* By observing the pressure contours, we can deduce that there is a repulsive force acting on the cylinders.
+In these contours, areas of high pressure are designated by a red color and negative areas by blue color.
+There is a region of high pressure in front of the cylinders, but when the fluid passes through the gap there is a pressure drop represented by a color transition from yellow to light blue which is even higher than the pressure on the opposite side of the cylinders represented by a darker blue.
+
+== Presentation 
+
+link:{attachmentsdir}/presentation.pdf[Download Presentation PDF]
 
 [bibliography]
 == Bibliography 

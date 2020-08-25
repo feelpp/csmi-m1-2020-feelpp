@@ -36,9 +36,8 @@
                 {
                     "expr":"{0,0}",
 		    "markers":["load1","load2","load3"]
-<<<<<<< HEAD
              }
-		        // end::load[]
+	           // end::load[]
             }
         },
         "velocity_y":
@@ -59,37 +58,9 @@
         // tag::outlet[]
         "outlet":{ "Outlet":{} }
         // end::outlet[]
-=======
                 }
-		// end::load[]
             }
-            // "Neumann_scalar":
-            // {
-	    // 	// tag::outlet[]
-	    // 	"Outlet":
-            //     { 
-            //         "expr":"0"
-            //     }
-            // }
-            // // end::outlet[]
-        },
-	"velocity_y":
-        {
-            "Dirichlet":
-            {
-		"walls":
-		{
-		    "expr":"0",
-		    "markers":["Wall1","Wall2"]
-		}
-	    }
 	},
-	"fluid":
-	{
-	    "outlet":{ "Outlet":{} }
->>>>>>> 09f53c318c15c500518cc13e3d57f909c3380a59
-	}
-    },
     "PostProcess":
     {   
        // tag::process[]
