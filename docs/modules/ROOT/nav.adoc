@@ -7,3 +7,5 @@
 ** xref:ROOT:3-cylinders-triangular-arrangements/index.adoc[Three Cylinders in Triangular arrangements]
 ** xref:ROOT:3-squares-side-by-side/index.adoc[Three Squares Side-by-Side]
 ** xref:ROOT:3-squares-inline/index.adoc[Three Squares Inline]
+
+* xref:ROOT:rapport/index.adoc[Rapport]

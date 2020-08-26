@@ -1,0 +1,13 @@
+= Rapport
+
+:page-plotly: true
+:icons: font
+:stem: latexmath
+:feelpp: Feel++
+:nofooter:
+:toc: left
+:bibtex-file: ibat.bib
+:imagesprefix:
+ifdef::env-github,env-browser,env-vscode[:imagesprefix: ../images/]
+
+link:{attachmentsdir}/presentation.pdf[Download Presentation PDF]

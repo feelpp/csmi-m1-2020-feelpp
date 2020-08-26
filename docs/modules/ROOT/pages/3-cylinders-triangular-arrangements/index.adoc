@@ -871,15 +871,20 @@ the graphs below show as the time histories of the drag and lift coefficients wh
 * The velocity contours give a very interesting picture of the flow condition for each case.
 Analysis of the figures indicates that for low L/D values the cylinders act as a single bluff body  and the gap shear layers are short in the direction of the current and do not roll up appreciably.
 
+In fact, the shear layers of the upstream roll include the downstream rolls and a recirculation zone is created between the rolls. A vortex path is formed behind the downstream rolls due to the shear layers of the first obstacle (upstream roll).
 
+At higher L/D values, instability in the flow is observed, the flow behavior between the cylinders is similar to that observed at the rear of a single cylinder.
+
+We can notice an acceleration of the velocity between the wall-obstruction space, this is due to the decrease of the fluid flow cross section.  There, there is an energy conversion of the fluid.
+
+
+
+* As shown in the figures, the time-averaged vorticity field is symmetrical with respect to the central line y/D=0.
 
 * By observing the pressure contours, we can deduce that there is a repulsive force acting on the cylinders.
 In these contours, areas of high pressure are designated by a red color and negative areas by blue color.
 There is a region of high pressure in front of the cylinders, but when the fluid passes through the gap there is a pressure drop represented by a color transition from yellow to light blue which is even higher than the pressure on the opposite side of the cylinders represented by a darker blue.
 
-== Presentation 
-
-link:{attachmentsdir}/presentation.pdf[Download Presentation PDF]
 
 [bibliography]
 == Bibliography 
